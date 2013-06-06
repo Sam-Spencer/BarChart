@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bar Chart by iRareMedia</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Bar Chart</h1>
+        <p>A bar graphing standalone library with animation for iOS (Cocoa Touch) apps</p>
+
+        <p class="view"><a href="https://github.com/iRareMedia/BarChart">View the Project on GitHub <small>iRareMedia/BarChart</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/iRareMedia/BarChart/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/iRareMedia/BarChart/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/iRareMedia/BarChart">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="bar-chart" class="anchor" href="#bar-chart"><span class="octicon octicon-link"></span></a>Bar Chart</h1>
+
+<p>A bar graphing standalone library with animation for iOS (Cocoa Touch). More documentation for this library is coming soon - along with a large amount of new features!</p>
+
+<p><img src="https://github.com/iRareMedia/BarChart/raw/master/Screenshot.png" alt="Screenshot on iPad and iPhone"></p>
+
+<h2>
+<a name="integration" class="anchor" href="#integration"><span class="octicon octicon-link"></span></a>Integration</h2>
+
+<p>Follow these steps to add Bar Chart to your iOS App project in Xcode. Check the <a href="https://github.com/iRareMedia/BarChart/blob/master/README.md#compatibility-requirements">compatibility requirements</a> to make sure you can use Bar Chart in your project.</p>
+
+<ol>
+<li>Add the CoreGraphics and QuartzCore Frameworks to your project<br>
+</li>
+<li>Add the Bar Chart files to your project (can be found in the folder titled <em>BarChart Library</em>)<br>
+</li>
+<li>Import Bar Chart into your View Controller: <code>#import "BarChartView.h"</code><br>
+</li>
+<li>Create a Bar Chart View in your interface and set its class to <code>BarChartView</code>
+</li>
+<li>Connect the Bar Chart View to your ViewController Class: <code>@property (strong, nonatomic) IBOutlet BarChartView *barChart;</code>
+</li>
+<li>Loading data into the Bar Chart can be done using an <code>XML file</code> or with an <code>NSArray</code>. Please refer to one of the sections below about loading data.</li>
+</ol><h2>
+<a name="loading-data-with-nsarray" class="anchor" href="#loading-data-with-nsarray"><span class="octicon octicon-link"></span></a>Loading Data with NSArray</h2>
+
+<p>Filling your Bar Chart with data from an NSArray is the easiest and most flexible way to setup and load data into a <code>BarChartView</code>. Bar Chart provides a simple method that properly formats and generates an <code>NSArray</code> for use with a Bar Chart. Here's how you can easily generate data for a Bar Chart:</p>
+
+<pre><code>//Generate properly formatted data to give to the bar chart
+NSArray *array = [barChart createChartDataWithTitles:[NSArray arrayWithObjects:@"Title 1", @"Title 2", @"Title 3", @"Title 4", nil]
+                                              values:[NSArray arrayWithObjects:@"4.7", @"8.3", @"17", @"5.4", nil]
+                                              colors:[NSArray arrayWithObjects:@"87E317", @"17A9E3", @"E32F17", @"FFE53D", nil]
+                                         labelColors:[NSArray arrayWithObjects:@"FFFFFF", @"FFFFFF", @"FFFFFF", @"FFFFFF", nil]];
+</code></pre>
+
+<p>As you can see, there are four different arrays you must pass as a parameter (none of the arrays can be nil, and they all must have the same number of objects). The first array, <code>Titles</code>, should contain the labels for each bar on the X-Axis from left to right. The second array, <code>values</code>, should contain the value of each bar from left to right. The last two arrays, <code>colors</code> and <code>labelColors</code>, should contain HEX values for each bar and its label from left to right.</p>
+
+<p>The above method returns an <code>NSArray</code> if the arrays are properly formatted, if not the method will return <code>nil</code> and an error will be printed in the log.</p>
+
+<h2>
+<a name="loading-data-with-xml" class="anchor" href="#loading-data-with-xml"><span class="octicon octicon-link"></span></a>Loading Data with XML</h2>
+
+<p>To properly display and parse your data into a bar graph, Bar Chart must be given an XML file to read in the following format with the following attributes:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;chart&gt;
+    &lt;set label="T1" value="19" color="3e5273" labelColor="3e5273"/&gt;
+    &lt;set label="T2" value="41" color="F0230C" labelColor="F0230C"/&gt;
+    &lt;set label="T3" value="101" color="566967" labelColor="566967"/&gt;
+&lt;/chart&gt; 
+</code></pre>
+
+<p>It is important that all four attributes are present in each set, otherwise there may be an error or exception while creating the Bar Chart. Colors must be HEX values, they cannot be RGB or UIColor. Refer to the <a href="https://github.com/iRareMedia/BarChart/blob/master/BarChart/Data/barChart.xml"><code>barChart.xml</code></a> file to see an example of how to format your data.</p>
+
+<p>Once you create and format an XML file, you can then load it into a Bar Chart using the following method:</p>
+
+<pre><code>//Load the bar chart with a premade XML file in your app's bundle
+[barChart setXmlData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"barChart" ofType:@"xml"]] showAxis:DisplayBothAxes withColor:[UIColor whiteColor] shouldPlotVerticalLines:YES];
+</code></pre>
+
+<p>Note that you must give the XML File as an <code>NSData</code> object, not a file or file path.</p>
+
+<h2>
+<a name="customizing-bar-chart" class="anchor" href="#customizing-bar-chart"><span class="octicon octicon-link"></span></a>Customizing Bar Chart</h2>
+
+<p>Customizing Bar Chart is easy. Bar Chart has three different types that allow for customization of the Bar Graph's Bars. More ways to customize Bar Chart are coming soon.</p>
+
+<h3>
+<a name="bar-display-style" class="anchor" href="#bar-display-style"><span class="octicon octicon-link"></span></a>Bar Display Style</h3>
+
+<p>Changes the visual appearance of the bars on the Bar Chart. There are three different styles available:  </p>
+
+<ul>
+<li>
+<strong>BarStyleGlossy</strong>: Adds a glossy shine and shades the bars. This is the default value if no value is set.<br>
+</li>
+<li>
+<strong>BarStyleMatte</strong>: Bars have shading but no gloss effects.<br>
+</li>
+<li>
+<strong>BarStyleFlat</strong>: Bars no no effects and are a solid flat color.<br>
+</li>
+</ul><p>You can set the Bar Style using the following method. You should always call this method before you update or load your Bar Chart:</p>
+
+<pre><code>//Set the Style of the Bars (Glossy, Matte, or Flat) - Glossy is default
+[barChart setupBarViewStyle:BarStyleGlossy];
+</code></pre>
+
+<h3>
+<a name="bar-shape" class="anchor" href="#bar-shape"><span class="octicon octicon-link"></span></a>Bar Shape</h3>
+
+<p>Changes the shape of the bars on the Bar Chart. There are two different styles available:  </p>
+
+<ul>
+<li>
+<strong>BarShapeRounded</strong>: Rounds the corners of the bars at the top. This is the default value if no value is set.<br>
+</li>
+<li>
+<strong>BarShapeSquared</strong>: Bars are not rounded - they are rectangles.<br>
+</li>
+</ul><p>You can set the Bar Shape using the following method. You should always call this method before you update or load your Bar Chart:</p>
+
+<pre><code>//Set the Shape of the Bars (Rounded or Squared) - Rounded is default
+[barChart setupBarViewShape:BarShapeRounded];
+</code></pre>
+
+<h3>
+<a name="bar-shadow" class="anchor" href="#bar-shadow"><span class="octicon octicon-link"></span></a>Bar Shadow</h3>
+
+<p>Changes the visual appearance of the shadow behind the bars on the Bar Chart. There are three different shadow styles available:  </p>
+
+<ul>
+<li>
+<strong>BarShadowLight</strong>: Bars have a light gray shadow with a slight blur and low opacity. This is the default value if no value is set.<br>
+</li>
+<li>
+<strong>BarShadowHeavy</strong>: Bars have a dark and (relative compared to the light shadow) defined shadow.<br>
+</li>
+<li>
+<strong>BarShadowNone</strong>: No QuartzCore Shadow is added to the bars - they lie flat against the Bar Chart.<br>
+</li>
+</ul><p>You can set the Bar Style using the following method. You should always call this method before you update or load your Bar Chart:</p>
+
+<pre><code>//Set the Drop Shadow of the Bars (Light, Heavy, or None) - Light is default
+[barChart setupBarViewShadow:BarShadowLight];
+</code></pre>
+
+<h2>
+<a name="compatibility-requirements" class="anchor" href="#compatibility-requirements"><span class="octicon octicon-link"></span></a>Compatibility Requirements</h2>
+
+<p>Before using Bar Chart, make sure your project meets its requirements.  </p>
+
+<ul>
+<li>Bar Chart works on iOS 4.2 and higher, however the sample project only runs on iOS 5.0 and higher.<br>
+</li>
+<li>Bar Chart now uses Objective-C ARC. If your project does not use ARC, add the ARC flag to the <strong>Bar Chart</strong> files in your project's Compile Sources section: <code>-fobjc-arc</code><br>
+</li>
+<li>You must add the <code>CoreGraphics</code> and <code>QuartzCore</code> frameworks to your project<br>
+</li>
+</ul><h2>
+<a name="to-do" class="anchor" href="#to-do"><span class="octicon octicon-link"></span></a>To-Do</h2>
+
+<p>Bar Chart is a work in progress. We're planning to add these features soon:<br>
+ [ ] Re-add animations to Bar Chart
+ [x] Add ways to customize Bar Chart
+ [ ] Add Stroke Effetcs Options to Bars
+ [ ] Add more data options (ex. using <code>UIColor</code> rather than <code>HEX</code>)
+ Think of anything else? Submit an issue!</p>
+
+<h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<table>
+<tr><th colspan="2"><b>Version 3.0</b></th></tr>
+<tr>
+<td>Setup a Bar Chart using only Storyboards / XIBs. Load data into a Bar Chart using an NSArray. Customize the visual appearance of a Bar Chart.
+    <ul>
+<li>Bar Charts can be added directly from the interface instead of through code. Just add a <tt>UIView</tt> to your View Controller and change its class to <tt>BarChartView</tt>. Then set it up in your implementation. Take a look at the improved sample project for more information.</li>
+        <li>Load data into a Bar Chart using an <tt>NSArray</tt> rather than an XML File. Use the new method to format and generate data for use with a Bar Chart: <tt>[createChartDataWithTitles: values: colors: labelColors:]</tt>. Refer to the new documentation for more information.</li>
+        <li>Less formatting is required for XML data loading. Use <tt>[dataWithContentsOfFile: values: colors: labelColors:]</tt> to set Bar Chart properties (rather than doing so in your XML file). Refer to the new documentation for more information.</li>
+        <li>Set which axis to display using the <tt>AxisDisplaySettings</tt> type. You can set this property when loading data into your Bar Chart</li>
+        <li>Added new methods and types to change the visual appearance of the Bar Chart</li>
+        <li>Fixed bugs and memory leaks</li>
+        <li>Code cleanup and reorganization to make it easier on the eyes.</li>
+    <ul></ul>
+</ul>
+</td>
+  </tr>
+<tr><th colspan="2"><b>Version 2.0</b></th></tr>
+<tr>
+<td>This update makes large improvements to the performance of code by converting the project to Objective-C ARC.   
+    <ul>
+<li>Converted project to ARC. If your project does not use ARC, add the ARC flag to the <b>Bar Chart</b> files in your project's Compile Sources section: <tt>-fobjc-arc</tt>.</li>
+    <li>Improved the demo app. The demo app now runs on iPhone 5 and iOS 5 or higher. It also begins the transition to a more interface based Bar Chart integration system.</li>
+    <li>Code cleanup and reorganization to make it easier on the eyes.</li>
+    <li>Project now compiles with ARMV7 and ARMV7S instead of ARMV6</li>
+    <ul></ul>
+</ul>
+</td>
+  </tr>
+<tr><th colspan="2"><b>Version 1.0</b></th></tr>
+<tr>
+<td>Initial Commit. View <a href="https://github.com/iRareMedia/BarChart/commits/master">commit history.</a>
+</td>
+  </tr>
+</table><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2012 Mezrin Kirill. Updated by iRare Media.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/iRareMedia">iRareMedia</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

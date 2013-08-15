@@ -32,6 +32,8 @@ typedef enum {
     BarShadowNone = 2
 } BarShadow;
 
-@protocol BarTypes <NSObject>
-
-@end
+typedef enum {
+    BarAnimationRise = 0,
+    BarAnimationFade  = 1,
+    BarAnimationNone = 2
+} BarAnimation;

@@ -1,7 +1,7 @@
 //
 //  BarChartView.m
 //
-//  Created by Mezrin Kirill on 17.02.12. Updated by iRare Media on June 5, 2013.
+//  Created by Mezrin Kirill on 17.02.12. Updated by iRare Media on August 12, 2013.
 //  Copyright (c) Mezrin Kirill 2012-2013.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,7 @@
 @end
 
 @implementation BarChartView
-@synthesize barViewShape, barViewDisplayStyle, barViewShadow;
+@synthesize barViewShape, barViewDisplayStyle, barViewShadow, barViewAnimation, plotViewColor;
 
 //------------------------------------------------------//
 //--- Bar Chart Setup ----------------------------------//
@@ -96,11 +96,10 @@
 	[self addSubview:plotChart];
 	
 	plotView = [[UIView alloc] initWithFrame:CGRectZero];
-	//plotView.backgroundColor = [UIColor colorWithRed:220/255 green:220/255 blue:220/255 alpha:0.5];
 	plotView.backgroundColor = [UIColor clearColor];
 	plotView.clipsToBounds = true;
 	plotView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-	[plotChart addSubview:plotView];
+    [plotChart addSubview:plotView];
 	
 	barViews = [[NSMutableArray alloc] initWithCapacity:0];
 	barLabels = [[NSMutableArray alloc] initWithCapacity:0];
@@ -124,6 +123,7 @@
         bar.barViewShadow = self.barViewShadow;
 		bar.backgroundColor = [UIColor clearColor];
 		bar.buttonColor = [barInfo objectForKey:@"color"];
+        plotView.alpha = 0.0;
 		[plotView addSubview:bar];
 		[barViews addObject:bar];
 		
@@ -140,6 +140,17 @@
 		}		 
 		_index++;
 	}
+    
+    if (self.barViewAnimation == BarAnimationRise) {
+        [self performSelector:@selector(animateBars) withObject:NULL afterDelay:0.5];
+    } else if (self.barViewAnimation == BarAnimationFade) {
+        [self performSelector:@selector(fadeBars) withObject:NULL afterDelay:0.5];
+    } else if (self.barViewAnimation == BarAnimationNone) {
+        plotView.alpha = 1.0;
+        return;
+    } else {
+        [self performSelector:@selector(animateBars) withObject:NULL afterDelay:0.5];
+    }
 }
 
 //------------------------------------------------------//
@@ -203,6 +214,7 @@
 	}
 	
 	[UIView animateWithDuration:0.8 animations:^{
+        plotView.alpha = 1.0;
 		NSUInteger index = 0;
 		for (NSDictionary *barInfo in chartDataArray)  {
 			BarView *bar = [barViews objectAtIndex:index];
@@ -212,6 +224,12 @@
                                    roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio));
 			index++;
 		}
+	}];
+}
+
+- (void)fadeBars {
+    [UIView animateWithDuration:0.5 animations:^{
+        plotView.alpha = 1.0;
 	}];
 }
 
@@ -233,12 +251,16 @@
     self.barViewShadow = shadow;
 }
 
+- (void)setupBarViewAnimation:(BarAnimation)animation {
+    self.barViewAnimation = animation;
+}
+
 //------------------------------------------------------//
 //--- Data ---------------------------------------------//
 //------------------------------------------------------//
 #pragma mark - Data
 
-- (void)setXmlData:(NSData *)xmlData showAxis:(AxisDisplaySetting)axisDisplay withColor:(UIColor *)axisColor shouldPlotVerticalLines:(BOOL)verticalLines {
+- (void)setXmlData:(NSData *)xmlData showAxis:(AxisDisplaySetting)axisDisplay withColor:(UIColor *)axisColor withFont:(UIFont *)axisFont shouldPlotVerticalLines:(BOOL)verticalLines {
 	//Clear current chart data
     [chartDataArray removeAllObjects];
     
@@ -292,15 +314,15 @@
 	
     //Set axis specific properties
 	if (showAxisX)  {
-		fontSize = FONT_SIZE;
+		fontSize = axisFont.pointSize;
 	}
 	
     //Setup maximum string size for labels
-	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]];
+	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:axisFont];
 	
     //Setup plot chart area
 	plotChart.frame = CGRectMake(0.0f, 0.0f, self.width, self.height - fontSize);
-	plotChart.fontSize = FONT_SIZE;
+	plotChart.fontSize = axisFont.pointSize;
 	plotChart.stepCountAxisX = chartDataArray.count;
 	plotChart.stepWidthAxisY = self.width/STROKE_AXIS_Y_SCALE;
 	plotChart.maxValueAxisY = maxValue;
@@ -318,7 +340,7 @@
 	[self setUpChart];
 }
 
-- (void)setDataWithArray:(NSArray *)chartData showAxis:(AxisDisplaySetting)axisDisplay withColor:(UIColor *)axisColor shouldPlotVerticalLines:(BOOL)verticalLines {
+- (void)setDataWithArray:(NSArray *)chartData showAxis:(AxisDisplaySetting)axisDisplay withColor:(UIColor *)axisColor withFont:(UIFont *)axisFont shouldPlotVerticalLines:(BOOL)verticalLines {
     //Clear current chart data
     [chartDataArray removeAllObjects];
 	
@@ -375,15 +397,15 @@
 	
     //Set axis specific properties
 	if (showAxisX)  {
-		fontSize = FONT_SIZE;
+		fontSize = axisFont.pointSize;
 	}
 	
     //Setup maximum string size for labels
-	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]];
+	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:axisFont];
 	
     //Setup plot chart area
 	plotChart.frame = CGRectMake(0.0f, 0.0f, self.width, self.height - fontSize);
-	plotChart.fontSize = FONT_SIZE;
+	plotChart.fontSize = axisFont.pointSize;
 	plotChart.stepCountAxisX = chartDataArray.count;
 	plotChart.stepWidthAxisY = self.width/STROKE_AXIS_Y_SCALE;
 	plotChart.maxValueAxisY = maxValue;

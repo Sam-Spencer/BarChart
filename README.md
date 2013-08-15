@@ -1,5 +1,5 @@
 # Bar Chart 
-A bar graphing standalone library with animation for iOS (Cocoa Touch). More documentation for this library is coming soon - along with a large amount of new features!
+BarChart is a Bar Graphing standalone library with animation for iOS Apps (Cocoa Touch). BarChart is easy to integrate with your existing or new iOS projects, allows for styling and easy customization, and provides multiple methods to easily populate your bar graph with data from a variety of sources (XML, NSArray, or NSDictionary).
 
 ![Screenshot on iPad and iPhone](https://github.com/iRareMedia/BarChart/raw/master/Screenshot.png)
 
@@ -80,6 +80,17 @@ You can set the Bar Style using the following method. You should always call thi
     //Set the Drop Shadow of the Bars (Light, Heavy, or None) - Light is default
     [barChart setupBarViewShadow:BarShadowLight];
 
+###Bar Animation
+Changes the presentation animation of the bars on the Bar Chart. There are three different animation styles available (more coming soon):  
+  * **BarAnimationRise**: Bars will "rise" or grow up from the bottom of the chart to their specified height and value while fading in. This is the default value if no value is set.   
+  * **BarAnimationFade**: Bars will fade-in simultaneously when presented.  
+  * **BarAnimationNone**: Bars suddenly appear without any animation.  
+
+You can set the Bar Style using the following method. You should always call this method before you update or load your Bar Chart:
+
+    //Set the Initial Animation of the Bars (Rise, Fade, or None) - Rise is default
+    [barChart setupBarViewAnimation:BarAnimationRise];
+
 ##Compatibility Requirements
 Before using Bar Chart, make sure your project meets its requirements.  
  - Bar Chart works on iOS 4.2 and higher, however the sample project only runs on iOS 5.0 and higher.  
@@ -87,16 +98,29 @@ Before using Bar Chart, make sure your project meets its requirements.
  - You must add the `CoreGraphics` and `QuartzCore` frameworks to your project   
 
 ##To-Do
-Bar Chart is a work in progress. We're planning to add these features soon:  
- [ ] Re-add animations to Bar Chart
- [x] Add ways to customize Bar Chart
- [ ] Add Stroke Effetcs Options to Bars
- [ ] Add more data options (ex. using `UIColor` rather than `HEX`)
- Think of anything else? Submit an issue!
+Bar Chart is a work in progress. We're planning to add these features soon:    
+- [x] Re-add animations to Bar Chart  
+- [x] Add ways to customize Bar Chart  
+- [ ] Add styling options to popup tips    
+- [ ] Add more animations, custom animations    
+- [ ] Add ability to plot negative values to Bar Chart  
 
 ##Changelog
 
 <table>
+<tr><th colspan="2" style="text-align:center;"><b>Version 4.0</b></th></tr>
+  <tr>
+    <td>New animations and methods allow for deeper customization of BarChart. Many warnings and issues have been fixed, including the absence of animation. BarChart is compatible with iOS 7 and can now be used in your iOS 7-ready apps.
+    <ul>
+   		<li>BarChart now animates bar data using two beautiful animations that you can choose from using the new <tt>setupBarViewAnimation</tt> method. Three new constants are available to set the animation type (fade, rise, or none). If you do not set an animation, the default rise animation will be used in combination with the fade.</li>
+   		<li>The BarChart background color is now clear instead of grey. This allows for easy customization of backgrounds.</li>
+   		<li>The sample app now allows for changes to the bar graph in real-time in the UI.</li>
+   		<li>Fixed issues with text aligment and line wrapping</li>
+   		<li>Tested and compatible with iOS 7</li>
+   		<li>Updated project settings to recommended Xcode settings. Now architecture is automatically selected, enabled warnings.</li>
+	</ul>
+  </td>
+  </tr>
   <tr><th colspan="2" style="text-align:center;"><b>Version 3.0</b></th></tr>
   <tr>
     <td>Setup a Bar Chart using only Storyboards / XIBs. Load data into a Bar Chart using an NSArray. Customize the visual appearance of a Bar Chart.
@@ -108,7 +132,7 @@ Bar Chart is a work in progress. We're planning to add these features soon:
    		<li>Added new methods and types to change the visual appearance of the Bar Chart</li>
    		<li>Fixed bugs and memory leaks</li>
    		<li>Code cleanup and reorganization to make it easier on the eyes.</li>
-	<ul>
+	</ul>
   </td>
   </tr>
   <tr><th colspan="2" style="text-align:center;"><b>Version 2.0</b></th></tr>
@@ -119,7 +143,7 @@ Bar Chart is a work in progress. We're planning to add these features soon:
     <li>Improved the demo app. The demo app now runs on iPhone 5 and iOS 5 or higher. It also begins the transition to a more interface based Bar Chart integration system.</li>
     <li>Code cleanup and reorganization to make it easier on the eyes.</li>
     <li>Project now compiles with ARMV7 and ARMV7S instead of ARMV6</li>
-    <ul>
+    </ul>
     </td>
   </tr>
 <tr><th colspan="2" style="text-align:center;"><b>Version 1.0</b></th></tr>
@@ -129,7 +153,7 @@ Bar Chart is a work in progress. We're planning to add these features soon:
 </table>
 
 ##License
-Copyright (c) 2012 Mezrin Kirill. Updated by iRare Media.
+Copyright © 2012 Mezrin Kirill. Updated by iRare Media, some portions Copyright © 2013 iRare Media.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

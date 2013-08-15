@@ -78,7 +78,7 @@
 	CGContextRef c = UIGraphicsGetCurrentContext(); 
 	
 	CGContextSetRGBStrokeColor(c, 0.0, 0.0, 0.0, 1.0);	// black
-	CGContextSetLineWidth(c, 1.0);
+	CGContextSetLineWidth(c, 0.5);
     
 	CGMutablePathRef bubblePath = CGPathCreateMutable();
 	
@@ -201,10 +201,7 @@
 	if (self.message) {
 		[textColor set];
 		CGRect textFrame = [self contentFrame];
-        [self.message drawInRect:textFrame
-                        withFont:textFont
-                   lineBreakMode:UILineBreakModeWordWrap
-                       alignment:UITextAlignmentCenter];
+        [self.message drawInRect:textFrame withFont:textFont lineBreakMode:NSLineBreakByWordWrapping  alignment:UITextAlignmentCenter];
     }
 }
 

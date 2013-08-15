@@ -96,9 +96,15 @@
 	
 	for (NSUInteger i = 0; i < stepCountAxisY; i++)  {
 		if (i % 2) {
-			CGContextSetFillColorWithColor(context, [[UIColor colorWithHexString:@"e8ebee"] CGColor]);
+//            if (plotBackColor)
+                CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+//            else
+//                CGContextSetFillColorWithColor(context, [[UIColor colorWithHexString:@"e8ebee"] CGColor]);
 		} else {
-			CGContextSetFillColorWithColor(context, [[UIColor colorWithHexString:@"e3e5e7"] CGColor]);
+//            if (plotBackColor)
+                CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+//            else
+//                CGContextSetFillColorWithColor(context, [[UIColor colorWithHexString:@"e3e5e7"] CGColor]);
 		}
 		
 		CGContextBeginPath(context);
@@ -115,7 +121,7 @@
 			NSString *textX = [NSString stringWithFormat:@"%i",(NSUInteger)(maxValueAxisY - i*stepValueAxisY)];
 			CGRect textRect = CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect) + i*stepHeightAxisY - labelSizeAxisY.height/2, labelSizeAxisY.width, labelSizeAxisY.height);
 		
-			[textX drawInRect:textRect withFont:[UIFont systemFontOfSize:fontSize] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+			[textX drawInRect:textRect withFont:[UIFont systemFontOfSize:fontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
 		
 			CGContextBeginPath(context);
 			CGContextMoveToPoint(context, CGRectGetMinX(rect) + labelSizeAxisY.width, CGRectGetMinY(rect) + i*stepHeightAxisY);

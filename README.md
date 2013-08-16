@@ -110,11 +110,10 @@ Bar Chart is a work in progress. We're planning to add these features soon:
 <table>
 <tr><th colspan="2" style="text-align:center;"><b>Version 4.0</b></th></tr>
   <tr>
-    <td>New animations and methods allow for deeper customization of BarChart. Many warnings and issues have been fixed, including the absence of animation. BarChart is compatible with iOS 7 and can now be used in your iOS 7-ready apps.
+    <td>New animations and methods allow for deeper customization of BarChart. Many warnings and issues have been fixed, including the absence of animation. New animation features added. BarChart is compatible with iOS 7 and can now be used in your iOS 7-ready apps.
     <ul>
    		<li>BarChart now animates bar data using two beautiful animations that you can choose from using the new <tt>setupBarViewAnimation</tt> method. Three new constants are available to set the animation type (fade, rise, or none). If you do not set an animation, the default rise animation will be used in combination with the fade.</li>
    		<li>The BarChart background color is now clear instead of grey. This allows for easy customization of backgrounds.</li>
-   		<li>The sample app now allows for changes to the bar graph in real-time in the UI.</li>
    		<li>Fixed issues with text aligment and line wrapping</li>
    		<li>Tested and compatible with iOS 7</li>
    		<li>Updated project settings to recommended Xcode settings. Now architecture is automatically selected, enabled warnings.</li>

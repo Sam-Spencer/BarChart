@@ -233,6 +233,10 @@
 	}];
 }
 
+- (void)bounceBars {
+	// Elastic Bar Animation Coming Soon!
+}
+
 - (void)setupBarViewStyle:(BarDisplayStyle)displayStyle {
     BarView *bar = [[BarView alloc] init];
     [bar setupBarStyle:displayStyle];

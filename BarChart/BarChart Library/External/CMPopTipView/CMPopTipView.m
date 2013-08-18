@@ -201,7 +201,7 @@
 	if (self.message) {
 		[textColor set];
 		CGRect textFrame = [self contentFrame];
-        [self.message drawInRect:textFrame withFont:textFont lineBreakMode:NSLineBreakByWordWrapping  alignment:UITextAlignmentCenter];
+        [self.message drawInRect:textFrame withFont:textFont lineBreakMode:NSLineBreakByWordWrapping  alignment:NSTextAlignmentCenter];
     }
 }
 
@@ -249,7 +249,7 @@
     if (self.message!=nil) {
         textSize= [self.message sizeWithFont:textFont
                            constrainedToSize:CGSizeMake(rectWidth, 99999.0)
-                               lineBreakMode:UILineBreakModeWordWrap];
+                               lineBreakMode:NSLineBreakByWordWrapping];
     }
     if (self.customView != nil) {
         textSize = self.customView.frame.size;

@@ -43,10 +43,10 @@
 @property (nonatomic, assign) CGFloat fontSize;
 @property (nonatomic, assign) BOOL plotVerticalLines;
 @property (nonatomic, assign) CGColorRef colorAxisY;
-@property (nonatomic, assign) CGFloat stepValueAxisY;
+@property (nonatomic, assign) CGFloat stepValueAxisY; // The value of each "step" on the Y Axis Scale
 @property (nonatomic, assign) NSUInteger stepCountAxisX;
 @property (nonatomic, assign) CGFloat stepWidthAxisY;
-@property (nonatomic, assign) CGFloat maxValueAxisY;
-@property (nonatomic, assign) CGSize labelSizeAxisY;
+@property (nonatomic, assign) CGFloat maxValueAxisY; // The maximum value on the Y Axis
+@property (nonatomic, assign) CGSize labelSizeAxisY; // The size of the labels on the Y axis, if zero - no Y axis scale is displayed
 
 @end

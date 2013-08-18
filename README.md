@@ -101,6 +101,7 @@ Before using Bar Chart, make sure your project meets its requirements.
 Bar Chart is a work in progress. We're planning to add these features soon:    
 - [x] Re-add animations to Bar Chart  
 - [x] Add ways to customize Bar Chart  
+- [x] Add Y Axis Scale   
 - [ ] Add styling options to popup tips    
 - [ ] Add more animations, custom animations    
 - [ ] Add ability to plot negative values to Bar Chart  
@@ -108,6 +109,11 @@ Bar Chart is a work in progress. We're planning to add these features soon:
 ##Changelog
 
 <table>
+<tr><th colspan="2" style="text-align:center;"><b>Version 4.1</b></th></tr>
+  <tr>
+    <td>Added automatic scale configuration on the Y Axis. BarChart now detects the minimum and maximum values on your chart and draws the appropriate scale. This can be turned ON or OFF based on the <tt>shouldPlotVerticalLines</tt> parameter in the <tt>setDataWithArray:</tt> method. A new <tt>Float</tt> animation is available for animating the presentation of the Bar Chart (Rise is still default).
+  </td>
+  </tr>
 <tr><th colspan="2" style="text-align:center;"><b>Version 4.0</b></th></tr>
   <tr>
     <td>New animations and methods allow for deeper customization of BarChart. Many warnings and issues have been fixed, including the absence of animation. New animation features added. BarChart is compatible with iOS 7 and can now be used in your iOS 7-ready apps.
@@ -152,10 +158,10 @@ Bar Chart is a work in progress. We're planning to add these features soon:
 </table>
 
 ##License
-Copyright © 2012 Mezrin Kirill. Updated by iRare Media, some portions Copyright © 2013 iRare Media.
+Copyright © 2012 Mezrin Kirill. Major updates by iRare Media, some portions Copyright © 2013 iRare Media.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-<span style="font-variant: small-caps">THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</span>
+    THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

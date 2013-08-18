@@ -145,6 +145,8 @@
         [self performSelector:@selector(animateBars) withObject:NULL afterDelay:0.5];
     } else if (self.barViewAnimation == BarAnimationFade) {
         [self performSelector:@selector(fadeBars) withObject:NULL afterDelay:0.5];
+    } else if (self.barViewAnimation == BarAnimationFloat) {
+        [self performSelector:@selector(floatBars) withObject:NULL afterDelay:0.5];
     } else if (self.barViewAnimation == BarAnimationNone) {
         plotView.alpha = 1.0;
         return;
@@ -154,9 +156,9 @@
 }
 
 //------------------------------------------------------//
-//--- Calculations, Animations, and Sizing -------------//
+//--- Calculations -------------------------------------//
 //------------------------------------------------------//
-#pragma mark - Calculations, Animations, and Sizing
+#pragma mark - Calculations
 
 - (void)calculateFrames {
 	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]];
@@ -208,6 +210,11 @@
 	}
 }
 
+//------------------------------------------------------//
+//--- Animations ---------------------------------------//
+//------------------------------------------------------//
+#pragma mark - Animations
+
 - (void)animateBars {
 	for (BarView *bar in barViews)  {
 		bar.bottom += bar.height;
@@ -218,10 +225,7 @@
 		NSUInteger index = 0;
 		for (NSDictionary *barInfo in chartDataArray)  {
 			BarView *bar = [barViews objectAtIndex:index];
-			bar.frame = CGRectMake((barFullWidth - barWidth)/2 + index*(barFullWidth),
-                                   plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio),
-                                   barWidth,
-                                   roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio));
+			bar.frame = CGRectMake((barFullWidth - barWidth)/2 + index*(barFullWidth), plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio), barWidth, roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio));
 			index++;
 		}
 	}];
@@ -233,9 +237,37 @@
 	}];
 }
 
-- (void)bounceBars {
-	// Elastic Bar Animation Coming Soon!
+- (void)floatBars {
+	for (BarView *bar in barViews)  {
+        bar.transform = CGAffineTransformMakeScale(0.5,0.5);
+	}
+    
+    
+    [UIView animateWithDuration:1.0 / 0.58 animations:^{
+        plotView.alpha = 1.0;
+        NSUInteger index = 0;
+        [UIView setAnimationRepeatCount:0.58];
+        [UIView setAnimationRepeatAutoreverses:YES];
+        
+        for (NSDictionary *barInfo in chartDataArray)  {
+            BarView *bar = [barViews objectAtIndex:index];
+            bar.transform = CGAffineTransformMakeScale(1.1,1.1);
+            index++;
+        }
+    } completion:^(BOOL finished) {
+        NSUInteger index = 0;
+        for (NSDictionary *barInfo in chartDataArray)  {
+            BarView *bar = [barViews objectAtIndex:index];
+            bar.transform = CGAffineTransformIdentity;
+            index++;
+        }
+    }];
 }
+
+//------------------------------------------------------//
+//--- Settings -----------------------------------------//
+//------------------------------------------------------//
+#pragma mark - Settings
 
 - (void)setupBarViewStyle:(BarDisplayStyle)displayStyle {
     BarView *bar = [[BarView alloc] init];

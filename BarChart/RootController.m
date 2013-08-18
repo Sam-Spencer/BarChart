@@ -36,7 +36,7 @@
 - (void)loadBarChartUsingArray {
     //Generate properly formatted data to give to the bar chart
     NSArray *array = [barChart createChartDataWithTitles:[NSArray arrayWithObjects:@"Title 1", @"Title 2", @"Title 3", @"Title 4", @"Title 5", @"Title 6", @"Title 7", nil]
-                                                  values:[NSArray arrayWithObjects:@"4.7", @"3.1",  @"8.3", @"17", @"5.4", @"19.6", @"18", nil]
+                                                  values:[NSArray arrayWithObjects:@"47", @"31",  @"83", @"17", @"54", @"196", @"18", nil]
                                                   colors:[NSArray arrayWithObjects:@"87E317", @"87E317", @"17A9E3", @"E32F17", @"FFE53D", @"7D26CD", @"7D26CD", nil]
                                              labelColors:[NSArray arrayWithObjects:@"575757", @"575757", @"575757", @"575757", @"575757", @"575757", @"575757", nil]];
     
@@ -49,7 +49,7 @@
     //Set the Drop Shadow of the Bars (Light, Heavy, or None) - Light is default
     [barChart setupBarViewShadow:BarShadowLight];
     
-    //Set the Initial Animation of the Bars (Rise, Fade, or None) - Rise is default
+    //Set the Initial Animation of the Bars (Rise, Float, Fade, or None) - Rise is default
     [barChart setupBarViewAnimation:BarAnimationRise];
     
     //Generate the bar chart using the formatted data

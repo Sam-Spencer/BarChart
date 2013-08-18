@@ -35,5 +35,6 @@ typedef enum {
 typedef enum {
     BarAnimationRise = 0,
     BarAnimationFade  = 1,
-    BarAnimationNone = 2
+    BarAnimationFloat = 2,
+    BarAnimationNone = 3
 } BarAnimation;

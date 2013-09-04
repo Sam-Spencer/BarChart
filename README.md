@@ -16,13 +16,13 @@ Follow these steps to add Bar Chart to your iOS App project in Xcode. Check the 
 ##Loading Data with NSArray
 Filling your Bar Chart with data from an NSArray is the easiest and most flexible way to setup and load data into a `BarChartView`. Bar Chart provides a simple method that properly formats and generates an `NSArray` for use with a Bar Chart. Here's how you can easily generate data for a Bar Chart:
 
-    //Generate properly formatted data to give to the bar chart
-    NSArray *array = [barChart createChartDataWithTitles:[NSArray arrayWithObjects:@"Title 1", @"Title 2", @"Title 3", @"Title 4", nil]
-                                                  values:[NSArray arrayWithObjects:@"4.7", @"8.3", @"17", @"5.4", nil]
-                                                  colors:[NSArray arrayWithObjects:@"87E317", @"17A9E3", @"E32F17", @"FFE53D", nil]
-                                             labelColors:[NSArray arrayWithObjects:@"FFFFFF", @"FFFFFF", @"FFFFFF", @"FFFFFF", nil]];
+    // Generate properly formatted data to give to the bar chart
+    NSArray *array = [barChart createChartDataWithTitles:[NSArray arrayWithObjects:@"Title 1", @"Title 2", nil]
+                                                  values:[NSArray arrayWithObjects:@"5.7", @"8.3", nil]
+                                                  colors:[NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor], nil]
+                                             labelColors:[NSArray arrayWithObjects:[UIColor darkGrayColor], [UIColor darkGrayColor], nil]];
                                              
-As you can see, there are four different arrays you must pass as a parameter (none of the arrays can be nil, and they all must have the same number of objects). The first array, `Titles`, should contain the labels for each bar on the X-Axis from left to right. The second array, `values`, should contain the value of each bar from left to right. The last two arrays, `colors` and `labelColors`, should contain HEX values for each bar and its label from left to right.
+As you can see, there are four different arrays you must pass as a parameter (none of the arrays can be nil, and they all must have the same number of objects). The first array, `Titles`, should contain the labels for each bar on the X-Axis from left to right. The second array, `values`, should contain the value of each bar from left to right. The last two arrays, `colors` and `labelColors`, should contain either `UIColor` objects OR HEX strings for each bar and its label from left to right.
 
 The above method returns an `NSArray` if the arrays are properly formatted, if not the method will return `nil` and an error will be printed in the log.
 
@@ -46,17 +46,18 @@ Once you create and format an XML file, you can then load it into a Bar Chart us
 Note that you must give the XML File as an `NSData` object, not a file or file path.
 
 ##Customizing Bar Chart
-Customizing Bar Chart is easy. Bar Chart has three different types that allow for customization of the Bar Graph's Bars. More ways to customize Bar Chart are coming soon.
+Customizing Bar Chart is easy. Bar Chart can be customized based on style, shape, shadow, and animation. Easy to use methods and types are available to custimze BarChart.
 
 ###Bar Display Style
 Changes the visual appearance of the bars on the Bar Chart. There are three different styles available:  
   * **BarStyleGlossy**: Adds a glossy shine and shades the bars. This is the default value if no value is set.   
-  * **BarStyleMatte**: Bars have shading but no gloss effects.  
-  * **BarStyleFlat**: Bars no no effects and are a solid flat color.  
+  * **BarStyleMatte**: Bars have shading and gradients but no gloss effects.  
+  * **BarStyleFair**: Bars have subtle vertical gradients, sans gloss and extra shading.    
+  * **BarStyleFlat**: Bars have no effects and are a solid flat color.  
 
 You can set the Bar Style using the following method. You should always call this method before you update or load your Bar Chart:
 
-    //Set the Style of the Bars (Glossy, Matte, or Flat) - Glossy is default
+    //Set the Style of the Bars (Glossy, Matte, Fair, or Flat) - Glossy is default
     [barChart setupBarViewStyle:BarStyleGlossy];
     
 ###Bar Shape
@@ -82,15 +83,50 @@ You can set the Bar Style using the following method. You should always call thi
 
 ###Bar Animation
 Changes the presentation animation of the bars on the Bar Chart. There are three different animation styles available (more coming soon):  
-  * **BarAnimationRise**: Bars will "rise" or grow up from the bottom of the chart to their specified height and value while fading in. This is the default value if no value is set.   
+  * **BarAnimationRise**: Bars will "rise" or grow up from the bottom of the chart to their specified height and value while fading in. This is the default value if no value is set.    
+  * **BarAnimationFloat**: Bars will float in from the middle of the chart and rest at their specified destinations and height while fading in.   
   * **BarAnimationFade**: Bars will fade-in simultaneously when presented.  
   * **BarAnimationNone**: Bars suddenly appear without any animation.  
 
 You can set the Bar Style using the following method. You should always call this method before you update or load your Bar Chart:
 
-    //Set the Initial Animation of the Bars (Rise, Fade, or None) - Rise is default
+    //Set the Initial Animation of the Bars (Rise, Fade, Float, or None) - Rise is default
     [barChart setupBarViewAnimation:BarAnimationRise];
 
+##Delegates
+Delegates are new in release 4.2 of BarChart. Currently, there are two delegate methods available and an easy to setup delegate property. Follow the instructions below to setup BarChart's delegate.
+
+###Setup
+Select the BarChart view in your Xcode Storyboard or XIB. Then select the Connections Inspector inside of the Utilities Pane. An outlet titled `barViewDelegate` should be listed under **Outlets**. Drag the `barViewDelegate` to your parent view controller. The picture below shows how this is done.
+
+![BarChart Delegate Setup](https://github.com/iRareMedia/BarChart/raw/master/DelegateSetup.png)
+
+Next, open your ViewController's header file and subscribe to the `BarViewDelegate`. Your `@interface` line should look something like this:
+
+    @interface RootController : UIViewController <BarViewDelegate>
+    
+Then add any of the following **optional** delegate methods to your implementation.
+
+    - (BOOL)barChartItemDisplaysPopoverOnTap
+
+    - (void)barChartItemTapped:(BarView *)barView
+
+Please refer to the Demo App to see exactly how this works or how to set it up.
+
+###Optional Methods
+There are currently only two delegate methods available, both of which are optional. The first delegate method, `barChartItemDisplaysPopoverOnTap`, tells BarChart whether it should display the *Popover* when the user taps on a bar. The popovers show the exact numerical value of the bar. This method **must** return a value.
+
+    - (BOOL)barChartItemDisplaysPopoverOnTap {
+        // Return YES to enable popups above bars when they're tapped. Popups will show the exact value of the bar. Return NO to disable popups. The default is YES. 
+        return YES;
+    }
+
+The second delegate method, `barChartItemTapped:`, is called when the user taps on a bar. This delegate method is always called regardless of the value returned in `barChartItemDisplaysPopoverOnTap`. The `barView` parameter contains a BarView object that contains all kinds of information about the bar that was tapped.
+
+    - (void)barChartItemTapped:(BarView *)barView {
+        NSLog(@"Bar Chart Item Tapped: %@", barView); // Printing the BarView object will print the bar's color and value in the log
+    }
+    
 ##Compatibility Requirements
 Before using Bar Chart, make sure your project meets its requirements.  
  - Bar Chart works on iOS 4.2 and higher, however the sample project only runs on iOS 5.0 and higher.  
@@ -109,6 +145,11 @@ Bar Chart is a work in progress. We're planning to add these features soon:
 ##Changelog
 
 <table>
+<tr><th colspan="2" style="text-align:center;"><b>Version 4.2</b></th></tr>
+  <tr>
+    <td>This version makes improvements towards the 5.0 milestone. Issue #3 and Issue #6 have been fixed in this version. When filling a BarChart with data from an NSArray, you can now use either UIColor or HEX strings (you can't use both though). A new <tt>Fair</tt> bar style is available for styling the bars on your Bar Chart (Gloss is still default). The Matte and Fair bar styles have also been updated to provide a more subtle, lighter gradient. The Flat bar style animation code has also been improved. A new delegate system is now available with two delegate methods and a delegate property which can be set directly in Xcode's Storyboards / Interface Builder. Refer to the documentation on delegates.
+  </td>
+  </tr>
 <tr><th colspan="2" style="text-align:center;"><b>Version 4.1</b></th></tr>
   <tr>
     <td>Added automatic scale configuration on the Y Axis. BarChart now detects the minimum and maximum values on your chart and draws the appropriate scale. This can be turned ON or OFF based on the <tt>shouldPlotVerticalLines</tt> parameter in the <tt>setDataWithArray:</tt> method. A new <tt>Float</tt> animation is available for animating the presentation of the Bar Chart (Rise is still default).

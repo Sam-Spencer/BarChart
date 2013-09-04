@@ -4,6 +4,8 @@
 //  Created by Mezrin Kirill on 17.02.12.
 //  Copyright (c) Mezrin Kirill 2012-2013.
 //
+//  Major Updates by iRare Media.
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -25,7 +27,8 @@
 
 #import "BarView.h"
 
-@interface BarView()
+id delegate;
+@interface BarView ()
 - (void)setUp;
 @end
 
@@ -33,14 +36,13 @@
 
 #pragma mark - Accessors
 
-@synthesize owner;
-@synthesize barValue;
+@synthesize owner, barValue;
 @synthesize cornerRadius, buttonColor, special;
 @synthesize barViewDisplayStyle, barViewShape, barViewShadow;
 
 #pragma mark - Initialization and teardown
 
-- (id) init {
+- (id)init {
 	self = [super init];
 	if (self)  {
 		[self setUp];
@@ -63,6 +65,17 @@
     return self;
 }
 
+- (NSString *)description {
+    NSString *barViewDescription = [NSString stringWithFormat:@"<BarView Item: %f | %@>", barValue, buttonColor];
+    return barViewDescription;
+}
+
+- (void)setupBarViewDelegate:(id)delegateClass {
+    if (delegateClass != self && delegateClass != nil) {
+        delegate = delegateClass;
+    }
+}
+
 - (void)setUp {
 	self.autoresizingMask =  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 }
@@ -79,24 +92,52 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	if (popTipView != nil)  {
-		[popTipView dismissAnimated:true];
-		popTipView = nil;
-		return;
-	}
-	
-	NSString *contentMessage = [NSString stringWithFormat:@"%.1f", barValue];
-	popTipView = [[CMPopTipView alloc] initWithMessage:contentMessage];
-	popTipView.backgroundColor = buttonColor;
-	popTipView.textColor = [UIColor whiteColor];
-	popTipView.animation = arc4random() % 2;
-	[popTipView presentPointingAtView:self inView:owner animated:YES];
+    if ([delegate respondsToSelector:@selector(barChartItemDisplaysPopoverOnTap)]) {
+        BOOL shouldShowPopover = [delegate barChartItemDisplaysPopoverOnTap];
+        if (shouldShowPopover == YES) {
+            if (popTipView != nil)  {
+                [popTipView dismissAnimated:true];
+                popTipView = nil;
+                return;
+            }
+            
+            NSString *contentMessage = [NSString stringWithFormat:@"%.1f", barValue];
+            popTipView = [[CMPopTipView alloc] initWithMessage:contentMessage];
+            popTipView.backgroundColor = buttonColor;
+            popTipView.textColor = [UIColor whiteColor];
+            popTipView.animation = arc4random() % 2;
+            [popTipView presentPointingAtView:self inView:owner animated:YES];
+            
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [popTipView dismissAnimated:true];
+                popTipView = nil;
+            });
+        }
+    } else {
+        if (popTipView != nil)  {
+            [popTipView dismissAnimated:true];
+            popTipView = nil;
+            return;
+        }
+        
+        NSString *contentMessage = [NSString stringWithFormat:@"%.1f", barValue];
+        popTipView = [[CMPopTipView alloc] initWithMessage:contentMessage];
+        popTipView.backgroundColor = buttonColor;
+        popTipView.textColor = [UIColor whiteColor];
+        popTipView.animation = arc4random() % 2;
+        [popTipView presentPointingAtView:self inView:owner animated:YES];
+        
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [popTipView dismissAnimated:true];
+            popTipView = nil;
+        });
+    }
     
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-		[popTipView dismissAnimated:true];
-		popTipView = nil;
-	});
+    if ([delegate respondsToSelector:@selector(barChartItemTapped:)]) {
+        [delegate barChartItemTapped:self];
+    }
 }
 
 #pragma mark - Drawing methods
@@ -248,7 +289,7 @@
         size_t num_locations = 2;
         CGFloat locations2[2] = { 0.0, 1.0 };
         CGFloat components2[8] = { 0.0, 0.0, 0.0, 0.0,  // Start color
-            0.0, 0.0, 0.0, 0.3 }; // End color
+            0.0, 0.0, 0.0, 0.2 }; // End color
         rgbColorspace = CGColorSpaceCreateDeviceRGB();
         shadowGradient = CGGradientCreateWithColorComponents(rgbColorspace, components2, locations2, num_locations);
         CGPoint topCenter = CGPointMake(CGRectGetMidX(currentBounds), 0.0f);
@@ -305,19 +346,19 @@
         
         CGColorSpaceRelease(rgbColorspace);
         
-    } else if (barViewDisplayStyle == BarStyleFlat) {
-        //Draw the bars with no effects at all - just plain colored bars
+    } else if (barViewDisplayStyle == BarStyleFair) {
+        //Draw the bars without a darkened shadow gradient or a gloss effect
         CGGradientRef shadowGradient;
         CGColorSpaceRef rgbColorspace;
         size_t num_locations = 2;
         CGFloat locations2[2] = { 0.0, 1.0 };
         CGFloat components2[8] = { 0.0, 0.0, 0.0, 0.0,  // Start color
-            0.0, 0.0, 0.0, 0.3 }; // End color
+            0.0, 0.0, 0.0, 0.2 }; // End color
         rgbColorspace = CGColorSpaceCreateDeviceRGB();
         shadowGradient = CGGradientCreateWithColorComponents(rgbColorspace, components2, locations2, num_locations);
         CGPoint topCenter = CGPointMake(CGRectGetMidX(currentBounds), 0.0f);
         CGPoint bottomCenter = CGPointMake(CGRectGetMidX(currentBounds), currentBounds.size.height);
-        //CGContextDrawLinearGradient(context, shadowGradient, topCenter, bottomCenter, 0); //Lighting Gradient
+        CGContextDrawLinearGradient(context, shadowGradient, topCenter, bottomCenter, 0); //Lighting Gradient
         CGGradientRelease(shadowGradient);
         
         CGFloat glossCornerRadius = cornerRadius;
@@ -342,19 +383,45 @@
         
         CGContextClip(context);
         
-        //Draw the gloss gradient
-        CGGradientRef glossGradient;
-        CGFloat locations[2] = { 0.0, 1.0 };
-        CGFloat components[8] = { 1.0, 1.0, 1.0, 0.35,  // Start color
-            1.0, 1.0, 1.0, 0.06 }; // End color
+        CGContextRestoreGState(context);
+        CGFloat lastPoint = currentBounds.size.height;
+        
+        if (lastPoint < 100.0) {
+            lastPoint = currentBounds.size.height;
+        } else if (lastPoint < 200.0) {
+            lastPoint = currentBounds.size.height/2;
+        } else {
+            lastPoint = currentBounds.size.height/4;
+        }
+        
+        CGColorSpaceRelease(rgbColorspace);
+        
+    } else if (barViewDisplayStyle == BarStyleFlat) {
+        //Draw the bars with no effects at all - just plain colored bars
+        CGColorSpaceRef rgbColorspace;
         rgbColorspace = CGColorSpaceCreateDeviceRGB();
-        glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
         
-        topCenter = CGPointMake(CGRectGetMinX(glossRect), CGRectGetMidY(glossRect));
-        bottomCenter = CGPointMake(CGRectGetMaxX(glossRect), CGRectGetMidY(glossRect));
-        //CGContextDrawLinearGradient(context, glossGradient, topCenter, bottomCenter, 0); //Gloss Effect
+        CGFloat glossCornerRadius = cornerRadius;
+        CGRect glossRect;
         
-        CGGradientRelease(glossGradient);
+        glossRect = CGRectMake(0.0f, 0.0f, currentBounds.size.width, currentBounds.size.height);
+        
+        CGContextSaveGState(context);
+        
+        CGContextBeginPath(context);
+        
+		CGContextMoveToPoint(context, CGRectGetMinX(glossRect) + glossCornerRadius, CGRectGetMinY(glossRect));
+		CGContextAddArc(context, CGRectGetMaxX(glossRect) - glossCornerRadius, CGRectGetMinY(glossRect) + glossCornerRadius, glossCornerRadius, 3 * M_PI / 2, 0, 0);
+		
+		CGContextAddLineToPoint(context, CGRectGetMaxX(glossRect), CGRectGetMaxY(glossRect));
+		CGContextAddLineToPoint(context, CGRectGetMinX(glossRect), CGRectGetMaxY(glossRect));
+		
+		CGContextAddLineToPoint(context, CGRectGetMinX(glossRect), CGRectGetMinY(glossRect) - cornerRadius);
+		CGContextAddArc(context, CGRectGetMinX(glossRect) + glossCornerRadius, CGRectGetMinY(glossRect) + glossCornerRadius, glossCornerRadius, M_PI, 3 * M_PI / 2, 0);
+        
+        CGContextClosePath(context);
+        
+        CGContextClip(context);
         
         CGContextRestoreGState(context);
         CGFloat lastPoint = currentBounds.size.height;

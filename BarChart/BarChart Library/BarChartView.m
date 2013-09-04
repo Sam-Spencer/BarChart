@@ -1,8 +1,10 @@
 //
 //  BarChartView.m
 //
-//  Created by Mezrin Kirill on 17.02.12. Updated by iRare Media on August 12, 2013.
+//  Created by Mezrin Kirill on 17.02.12.
 //  Copyright (c) Mezrin Kirill 2012-2013.
+//
+//  Major Updates by iRare Media.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +27,9 @@
 
 #import "BarChartView.h"
 
-@interface BarChartView() 
+@interface BarChartView () {
+    BarView *bar;
+}
 - (void)codeSetUp;
 - (void)interfaceSetUp;
 - (void)setUpChart;
@@ -34,6 +38,7 @@
 
 @implementation BarChartView
 @synthesize barViewShape, barViewDisplayStyle, barViewShadow, barViewAnimation, plotViewColor;
+@synthesize barViewDelegate;
 
 //------------------------------------------------------//
 //--- Bar Chart Setup ----------------------------------//
@@ -111,7 +116,7 @@
 	
 	NSUInteger _index = 0;
 	for (NSDictionary *barInfo in chartDataArray)  {
-		BarView *bar = [[BarView alloc] initWithFrame:CGRectMake((barFullWidth - barWidth)/2 + _index*(barFullWidth),  plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio), barWidth, roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio))];
+		bar = [[BarView alloc] initWithFrame:CGRectMake((barFullWidth - barWidth)/2 + _index*(barFullWidth),  plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio), barWidth, roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio))];
 		bar.cornerRadius = 10.0f;
 		bar.barValue = [[barInfo objectForKey:@"value"] floatValue];
 		bar.owner = self;
@@ -140,6 +145,10 @@
 		}		 
 		_index++;
 	}
+    
+    if (barViewDelegate) {
+        [bar setupBarViewDelegate:barViewDelegate];
+    }
     
     if (self.barViewAnimation == BarAnimationRise) {
         [self performSelector:@selector(animateBars) withObject:NULL afterDelay:0.5];
@@ -192,7 +201,7 @@
 	[self calculateFrames];
 	NSUInteger index = 0;
 	for (NSDictionary *barInfo in chartDataArray)  {
-		BarView *bar = [barViews objectAtIndex:index];
+		bar = [barViews objectAtIndex:index];
 		bar.frame = CGRectMake((barFullWidth - barWidth)/2 + index*(barFullWidth),
                                plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio),
                                barWidth, roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio));
@@ -216,7 +225,7 @@
 #pragma mark - Animations
 
 - (void)animateBars {
-	for (BarView *bar in barViews)  {
+	for (bar in barViews)  {
 		bar.bottom += bar.height;
 	}
 	
@@ -224,7 +233,7 @@
         plotView.alpha = 1.0;
 		NSUInteger index = 0;
 		for (NSDictionary *barInfo in chartDataArray)  {
-			BarView *bar = [barViews objectAtIndex:index];
+			bar = [barViews objectAtIndex:index];
 			bar.frame = CGRectMake((barFullWidth - barWidth)/2 + index*(barFullWidth), plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio), barWidth, roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio));
 			index++;
 		}
@@ -238,7 +247,7 @@
 }
 
 - (void)floatBars {
-	for (BarView *bar in barViews)  {
+	for (bar in barViews)  {
         bar.transform = CGAffineTransformMakeScale(0.5,0.5);
 	}
     
@@ -250,14 +259,14 @@
         [UIView setAnimationRepeatAutoreverses:YES];
         
         for (NSDictionary *barInfo in chartDataArray)  {
-            BarView *bar = [barViews objectAtIndex:index];
+            bar = [barViews objectAtIndex:index];
             bar.transform = CGAffineTransformMakeScale(1.1,1.1);
             index++;
         }
     } completion:^(BOOL finished) {
         NSUInteger index = 0;
         for (NSDictionary *barInfo in chartDataArray)  {
-            BarView *bar = [barViews objectAtIndex:index];
+            bar = [barViews objectAtIndex:index];
             bar.transform = CGAffineTransformIdentity;
             index++;
         }
@@ -270,19 +279,16 @@
 #pragma mark - Settings
 
 - (void)setupBarViewStyle:(BarDisplayStyle)displayStyle {
-    BarView *bar = [[BarView alloc] init];
     [bar setupBarStyle:displayStyle];
     self.barViewDisplayStyle = displayStyle;
 }
 
 - (void)setupBarViewShape:(BarShape)shape {
-    BarView *bar = [[BarView alloc] init];
     [bar setupBarShape:shape];
     self.barViewShape = shape;
 }
 
 - (void)setupBarViewShadow:(BarShadow)shadow {
-    BarView *bar = [[BarView alloc] init];
     [bar setupBarShadow:shadow];
     self.barViewShadow = shadow;
 }
@@ -297,10 +303,10 @@
 #pragma mark - Data
 
 - (void)setXmlData:(NSData *)xmlData showAxis:(AxisDisplaySetting)axisDisplay withColor:(UIColor *)axisColor withFont:(UIFont *)axisFont shouldPlotVerticalLines:(BOOL)verticalLines {
-	//Clear current chart data
+	// Clear current chart data
     [chartDataArray removeAllObjects];
     
-    //Set chart data
+    // Set chart data
 	XMLElement *xml = [XMLParser parse:xmlData];
 	
 	if (!(xml != NULL && xml.children.count)) 
@@ -310,16 +316,16 @@
 	@autoreleasepool {
 		for (XMLElement *barElement in xml.children) {
 			NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-															 [barElement getAttribute:@"label"], @"label", 
-															 [NSNumber numberWithFloat:[[barElement getAttribute:@"value"] floatValue]], @"value", 
-															 [UIColor colorWithHexString:[barElement getAttribute:@"color"]], @"color", 
-															 [UIColor colorWithHexString:[barElement getAttribute:@"labelColor"]], @"labelColor", nil];
+                                     [barElement getAttribute:@"label"], @"label",
+                                     [NSNumber numberWithFloat:[[barElement getAttribute:@"value"] floatValue]], @"value",
+                                     [UIColor colorWithHexString:[barElement getAttribute:@"color"]], @"color",
+                                     [UIColor colorWithHexString:[barElement getAttribute:@"labelColor"]], @"labelColor", nil];
 			[chartDataArray addObject:barInfo];
 			[barValues addObject:[NSNumber numberWithFloat:[[barElement getAttribute:@"value"] floatValue]]];
 		}
 	}
 	
-	//Setup the maximum chart values based on the chartData
+	// Setup the maximum chart values based on the chartData
 	maxValue = [[barValues valueForKeyPath:@"@max.floatValue"] floatValue] + [[barValues valueForKeyPath:@"@max.floatValue"] floatValue]*15/100;
 	realMaxValue = [[barValues valueForKeyPath:@"@max.floatValue"] floatValue];
 	maxValue = maxValue - fmodf(maxValue, STEP_AXIS_Y);
@@ -327,7 +333,7 @@
 		maxValue = maxValue + STEP_AXIS_Y;
 	}
 	
-    //Get axis display settings
+    // Get axis display settings
     if (axisDisplay == DisplayBothAxes) {
         showAxisY = YES;
         showAxisX = YES;
@@ -342,21 +348,21 @@
         showAxisX = NO;
     }
     
-    //Set vertical lines attribute
+    // Set vertical lines attribute
 	plotVerticalLines = verticalLines;
 	
-    //Set color of axis
+    // Set color of axis
 	colorAxisY = axisColor;
 	
-    //Set axis specific properties
+    // Set axis specific properties
 	if (showAxisX)  {
 		fontSize = axisFont.pointSize;
 	}
 	
-    //Setup maximum string size for labels
+    // Setup maximum string size for labels
 	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:axisFont];
 	
-    //Setup plot chart area
+    // Setup plot chart area
 	plotChart.frame = CGRectMake(0.0f, 0.0f, self.width, self.height - fontSize);
 	plotChart.fontSize = axisFont.pointSize;
 	plotChart.stepCountAxisX = chartDataArray.count;
@@ -372,34 +378,44 @@
 		plotChart.labelSizeAxisY = CGSizeZero;
     }
     
-    //Display the configured chart
+    // Display the configured chart
 	[self setUpChart];
 }
 
 - (void)setDataWithArray:(NSArray *)chartData showAxis:(AxisDisplaySetting)axisDisplay withColor:(UIColor *)axisColor withFont:(UIFont *)axisFont shouldPlotVerticalLines:(BOOL)verticalLines {
-    //Clear current chart data
+    // Clear current chart data
     [chartDataArray removeAllObjects];
 	
-    //Make sure chartData is not nil
+    // Make sure chartData is not nil
     if (!(chartData != NULL && chartData.count))
 		return;
     
-    //Set the chart data
-    //Loop through chartData and retrieve attributes of each object to display on each bar
+    // Set the chart data
+    // Loop through chartData and retrieve attributes of each object to display on each bar
 	NSMutableArray *barValues = [NSMutableArray arrayWithCapacity:0];
     @autoreleasepool {
         for (NSDictionary *objectData in chartData) {
-            NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [objectData objectForKey:@"label"], @"label",
-                                     [NSNumber numberWithFloat:[[objectData objectForKey:@"value"] floatValue]], @"value",
-                                     [UIColor colorWithHexString:[objectData objectForKey:@"color"]], @"color",
-                                     [UIColor colorWithHexString:[objectData objectForKey:@"labelColor"]], @"labelColor", nil];
-            [chartDataArray addObject:barInfo];
-            [barValues addObject:[NSNumber numberWithFloat:[[objectData objectForKey:@"value"] floatValue]]];
+            if ([[objectData objectForKey:@"color"] isKindOfClass:[UIColor class]]) {
+                NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [objectData objectForKey:@"label"], @"label",
+                                         [NSNumber numberWithFloat:[[objectData objectForKey:@"value"] floatValue]], @"value",
+                                         [objectData objectForKey:@"color"], @"color",
+                                         [objectData objectForKey:@"labelColor"], @"labelColor", nil];
+                [chartDataArray addObject:barInfo];
+                [barValues addObject:[NSNumber numberWithFloat:[[objectData objectForKey:@"value"] floatValue]]];
+            } else {
+                NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [objectData objectForKey:@"label"], @"label",
+                                         [NSNumber numberWithFloat:[[objectData objectForKey:@"value"] floatValue]], @"value",
+                                         [UIColor colorWithHexString:[objectData objectForKey:@"color"]], @"color",
+                                         [UIColor colorWithHexString:[objectData objectForKey:@"labelColor"]], @"labelColor", nil];
+                [chartDataArray addObject:barInfo];
+                [barValues addObject:[NSNumber numberWithFloat:[[objectData objectForKey:@"value"] floatValue]]];
+            }
         }
     }
     
-    //Setup the maximum chart values based on the chartData
+    // Setup the maximum chart values based on the chartData
 	maxValue = [[barValues valueForKeyPath:@"@max.floatValue"] floatValue] + [[barValues valueForKeyPath:@"@max.floatValue"] floatValue]*15/100;
 	realMaxValue = [[barValues valueForKeyPath:@"@max.floatValue"] floatValue];
 	maxValue = maxValue - fmodf(maxValue, STEP_AXIS_Y);
@@ -407,7 +423,7 @@
 		maxValue = maxValue + STEP_AXIS_Y;
 	}
 	
-    //Get axis display settings
+    // Get axis display settings
     if (axisDisplay == DisplayBothAxes) {
         showAxisY = YES;
         showAxisX = YES;
@@ -425,21 +441,21 @@
         showAxisX = YES;
     }
     
-    //Set vertical lines attribute
+    // Set vertical lines attribute
 	plotVerticalLines = verticalLines;
 	
-    //Set color of axis
+    // Set color of axis
 	colorAxisY = axisColor;
 	
-    //Set axis specific properties
+    // Set axis specific properties
 	if (showAxisX)  {
 		fontSize = axisFont.pointSize;
 	}
 	
-    //Setup maximum string size for labels
+    // Setup maximum string size for labels
 	CGSize maxStringSize = [[NSString stringWithFormat:@"%i", (int)maxValue] sizeWithFont:axisFont];
 	
-    //Setup plot chart area
+    // Setup plot chart area
 	plotChart.frame = CGRectMake(0.0f, 0.0f, self.width, self.height - fontSize);
 	plotChart.fontSize = axisFont.pointSize;
 	plotChart.stepCountAxisX = chartDataArray.count;
@@ -455,22 +471,35 @@
 		plotChart.labelSizeAxisY = CGSizeZero;
     }
     
-    //Display the configured chart
+    // Display the configured chart
 	[self setUpChart];
 }
 
 - (NSArray *)createChartDataWithTitles:(NSArray *)titles values:(NSArray *)values colors:(NSArray *)colors labelColors:(NSArray *)labelColors {
-    //Make sure each array has the same number of objects, otherwise there'll be an exception and a crash
+    // Make sure each array has the same number of objects, otherwise there'll be an exception and a crash
     if ([titles count] == [values count] && [titles count] == [colors count] && [colors count] == [labelColors count]) {
         NSMutableArray *chartData = [[NSMutableArray alloc] init];
         for (int i =  0; i < [titles count]; i++) {
-            NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [titles objectAtIndex:i], @"label",
-                                     [values objectAtIndex:i], @"value",
-                                     [colors objectAtIndex:i], @"color",
-                                     [labelColors objectAtIndex:i], @"labelColor",
-                                     nil];
-            [chartData addObject:barInfo];
+            if ([[colors objectAtIndex:i] isKindOfClass:[UIColor class]] && [[labelColors objectAtIndex:i] isKindOfClass:[UIColor class]]) {
+                NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [titles objectAtIndex:i], @"label",
+                                         [values objectAtIndex:i], @"value",
+                                         [colors objectAtIndex:i], @"color",
+                                         [labelColors objectAtIndex:i], @"labelColor",
+                                         nil];
+                [chartData addObject:barInfo];
+            } else if ([[colors objectAtIndex:i] isKindOfClass:[NSString class]] && [[labelColors objectAtIndex:i] isKindOfClass:[NSString class]]) {
+                NSDictionary *barInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [titles objectAtIndex:i], @"label",
+                                         [values objectAtIndex:i], @"value",
+                                         [colors objectAtIndex:i], @"color",
+                                         [labelColors objectAtIndex:i], @"labelColor",
+                                         nil];
+                [chartData addObject:barInfo];
+            } else {
+                NSLog(@"Error while creating chart data. The color and labelColor NSArrays specified in the [createChartDataWithTitles: andValues: andColors: andLabelColors:]; method must have the exact same number of objects and types of objects. Make sure both the color array and the labelColor array contain only UIColor objects or only HEX Strings then try again. Below are the objects in both arrays:\nColors Array: %@ \nLabel Colors Array: %@ objects", colors, labelColors);
+                return nil;
+            }
         }
         return chartData;
     } else {

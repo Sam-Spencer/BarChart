@@ -1,8 +1,10 @@
 //
 //  BarChartView.h
 //
-//  Created by Mezrin Kirill on 17.02.12. Updated by iRare Media on August 12, 2013.
+//  Created by Mezrin Kirill on 17.02.12
 //  Copyright (c) Mezrin Kirill 2012-2013.
+//
+//  Major Updates by iRare Media.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +26,7 @@
 //
 
 #if !__has_feature(objc_arc)
-#error BarChart uses Objective-C ARC. Turn on ARC and convert this project to ARC OR add the -fobjc-arc compiler flag to the BarChart files.
+#error BarChart uses Objective-C ARC. Turn on ARC and convert this project to ARC OR add the -fobjc-arc compiler flag to the BarChart files in your Project Build Phases.
 #endif
 
 #define MAX_BAR_WIDTH 60.0f
@@ -68,6 +70,8 @@
 	CGFloat barFullWidth;
 	CGFloat fontSize;
 }
+
+@property (nonatomic, retain) IBOutlet id <BarViewDelegate> barViewDelegate;
 
 @property (assign) BarDisplayStyle barViewDisplayStyle;
 @property (assign) BarShape barViewShape;

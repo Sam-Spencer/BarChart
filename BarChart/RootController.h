@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BarChartView.h"
 
-@interface RootController : UIViewController
+@interface RootController : UIViewController <BarViewDelegate>
 
 @property (strong, nonatomic) IBOutlet BarChartView *barChart;
 

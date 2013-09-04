@@ -18,7 +18,8 @@ typedef enum {
 typedef enum {
     BarStyleGlossy = 0,
     BarStyleMatte = 1,
-    BarStyleFlat = 2
+    BarStyleFair = 2,
+    BarStyleFlat = 3
 } BarDisplayStyle;
 
 typedef enum {

@@ -17,6 +17,9 @@
                                 <rect key="frame" x="5" y="50" width="310" height="511"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="barViewDelegate" destination="2RL-Hj-jNK" id="D3N-IG-Tid"/>
+                                </connections>
                             </view>
                             <navigationBar contentMode="scaleToFill" id="iSO-Jg-4Bz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -42,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7M6-Mk-iS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="293"/>
+            <point key="canvasLocation" x="163" y="457"/>
         </scene>
         <!--Root Controller-->
         <scene sceneID="z74-TA-V20">
@@ -59,7 +62,7 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NmX-nv-9YK">
                                         <rect key="frame" x="20" y="510" width="280" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                        <string key="text">Version 4.0 Build 305 
+                                        <string key="text">Version 4.2 Build 354 
 Available for use with the MIT License.</string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -128,7 +131,7 @@ Available for use with the MIT License.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-ml-seB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="293"/>
+            <point key="canvasLocation" x="666" y="457"/>
         </scene>
     </scenes>
     <resources>
@@ -137,6 +140,9 @@ Available for use with the MIT License.</string>
     <classes>
         <class className="BarChartView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BarChartView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="barViewDelegate"/>
+            </relationships>
         </class>
         <class className="RootController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RootController.h"/>

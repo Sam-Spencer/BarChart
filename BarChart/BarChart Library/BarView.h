@@ -4,6 +4,8 @@
 //  Created by Mezrin Kirill on 17.02.12.
 //  Copyright (c) Mezrin Kirill 2012-2013.
 //
+//  Major Updates by iRare Media.
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -28,6 +30,14 @@
 #import "CMPopTipView.h"
 #import "BarTypes.h"
 
+@class BarView;
+@protocol BarViewDelegate <NSObject>
+@optional
+- (void)barChartItemTapped:(BarView *)barView;
+- (BOOL)barChartItemDisplaysPopoverOnTap;
+
+@end
+
 @interface BarView : UIButton {
 	CGFloat barValue;
 	CGFloat cornerRadius;
@@ -47,5 +57,6 @@
 - (void)setupBarStyle:(BarDisplayStyle)displayStyle;
 - (void)setupBarShape:(BarShape)shape;
 - (void)setupBarShadow:(BarShadow)shadow;
+- (void)setupBarViewDelegate:(id)delegateClass;
 
 @end

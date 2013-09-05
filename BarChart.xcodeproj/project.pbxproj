@@ -26,6 +26,10 @@
 		99A66CE9175F8C7400A17045 /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A66CDE175F8C7400A17045 /* XMLParserDelegate.m */; };
 		99A66CEA175F8C7400A17045 /* PlotChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A66CE0175F8C7400A17045 /* PlotChartView.m */; };
 		99A66CF1175FF1AD00A17045 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A66CF0175FF1AD00A17045 /* QuartzCore.framework */; };
+		A6ED4D1517D8B70A00A1D97F /* ChartColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4D1417D8B70A00A1D97F /* ChartColors.m */; };
+		A6ED4D1817D8B85200A1D97F /* BarChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4D1717D8B85200A1D97F /* BarChartModel.m */; };
+		A6ED4D1B17D8BB4800A1D97F /* BarChartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */; };
+		A6ED4D2017D8C59000A1D97F /* BarChartModelExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4D1F17D8C59000A1D97F /* BarChartModelExampleController.m */; };
 		FA20611A14EBEF4200D4F642 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA20611914EBEF4200D4F642 /* UIKit.framework */; };
 		FA20611C14EBEF4200D4F642 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA20611B14EBEF4200D4F642 /* Foundation.framework */; };
 		FA20611E14EBEF4200D4F642 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA20611D14EBEF4200D4F642 /* CoreGraphics.framework */; };
@@ -68,6 +72,14 @@
 		99A66CE0175F8C7400A17045 /* PlotChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotChartView.m; sourceTree = "<group>"; };
 		99A66CEC175FC9BA00A17045 /* BarTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarTypes.h; sourceTree = "<group>"; };
 		99A66CF0175FF1AD00A17045 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A6ED4D1317D8B70A00A1D97F /* ChartColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartColors.h; sourceTree = "<group>"; };
+		A6ED4D1417D8B70A00A1D97F /* ChartColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartColors.m; sourceTree = "<group>"; };
+		A6ED4D1617D8B85200A1D97F /* BarChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartModel.h; sourceTree = "<group>"; };
+		A6ED4D1717D8B85200A1D97F /* BarChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartModel.m; sourceTree = "<group>"; };
+		A6ED4D1917D8BB4800A1D97F /* BarChartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartItem.h; sourceTree = "<group>"; };
+		A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartItem.m; sourceTree = "<group>"; };
+		A6ED4D1E17D8C59000A1D97F /* BarChartModelExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartModelExampleController.h; sourceTree = "<group>"; };
+		A6ED4D1F17D8C59000A1D97F /* BarChartModelExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartModelExampleController.m; sourceTree = "<group>"; };
 		FA20611514EBEF4200D4F642 /* BarChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA20611914EBEF4200D4F642 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA20611B14EBEF4200D4F642 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +162,12 @@
 		99A66CD3175F8C7400A17045 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A6ED4D1917D8BB4800A1D97F /* BarChartItem.h */,
+				A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */,
+				A6ED4D1617D8B85200A1D97F /* BarChartModel.h */,
+				A6ED4D1717D8B85200A1D97F /* BarChartModel.m */,
+				A6ED4D1317D8B70A00A1D97F /* ChartColors.h */,
+				A6ED4D1417D8B70A00A1D97F /* ChartColors.m */,
 				99A66CD4175F8C7400A17045 /* UIColor+i7HexColor.h */,
 				99A66CD5175F8C7400A17045 /* UIColor+i7HexColor.m */,
 				99A66CD6175F8C7400A17045 /* UIViewSizeShortcuts.h */,
@@ -212,6 +230,8 @@
 				99A4BFA7175ED06000DC4BF9 /* Storyboard-iPad.storyboard */,
 				FA56664914EBFFF5006BBF89 /* RootController.h */,
 				FA56664A14EBFFF5006BBF89 /* RootController.m */,
+				A6ED4D1E17D8C59000A1D97F /* BarChartModelExampleController.h */,
+				A6ED4D1F17D8C59000A1D97F /* BarChartModelExampleController.m */,
 				FA20612014EBEF4200D4F642 /* Supporting Files */,
 			);
 			path = BarChart;
@@ -326,10 +346,13 @@
 			files = (
 				FA20612614EBEF4200D4F642 /* main.m in Sources */,
 				FA20612A14EBEF4200D4F642 /* AppDelegate.m in Sources */,
+				A6ED4D1817D8B85200A1D97F /* BarChartModel.m in Sources */,
+				A6ED4D1517D8B70A00A1D97F /* ChartColors.m in Sources */,
 				FA56664B14EBFFF5006BBF89 /* RootController.m in Sources */,
 				99A66CE1175F8C7400A17045 /* BarChartView.m in Sources */,
 				99A66CE2175F8C7400A17045 /* BarLabel.m in Sources */,
 				99A66CE3175F8C7400A17045 /* BarView.m in Sources */,
+				A6ED4D2017D8C59000A1D97F /* BarChartModelExampleController.m in Sources */,
 				99A66CE4175F8C7400A17045 /* CMPopTipView.m in Sources */,
 				99A66CE5175F8C7400A17045 /* UIColor+i7HexColor.m in Sources */,
 				99A66CE6175F8C7400A17045 /* UIViewSizeShortcuts.m in Sources */,
@@ -337,6 +360,7 @@
 				99A66CE8175F8C7400A17045 /* XMLParser.m in Sources */,
 				99A66CE9175F8C7400A17045 /* XMLParserDelegate.m in Sources */,
 				99A66CEA175F8C7400A17045 /* PlotChartView.m in Sources */,
+				A6ED4D1B17D8BB4800A1D97F /* BarChartItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

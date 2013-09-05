@@ -69,17 +69,17 @@
     //IOS7 YellowColor
     [colors addObject:[UIColor colorWithRed:1.0f green:0.79f blue:0.28f alpha:1.0f]];
     
-    //pink color
-    [colors addObject:[UIColor colorWithRed:1.0f green:0.17f blue:0.34f alpha:1.0f]];
-    
-    //#095bff (darker blue)
-    [colors addObject:[UIColor colorWithRed:0.035 green:0.357 blue:1.000 alpha:1.000]];
+    //teal
+    [colors addObject:[UIColor colorWithRed:0.118 green:0.569 blue:0.604 alpha:1.000]];
     
     //#9da2a4 (gray)
     [colors addObject:[UIColor colorWithRed:0.616 green:0.635 blue:0.643 alpha:1.000]];
     
-    //#fc1c1c (red)
-    [colors addObject:[UIColor colorWithRed:0.988 green:0.110 blue:0.110 alpha:1.000]];
+    //#095bff (darker blue)
+    [colors addObject:[UIColor colorWithRed:0.035 green:0.357 blue:1.000 alpha:1.000]];
+    
+    //lt purple
+    [colors addObject:[UIColor colorWithRed:0.439 green:0.259 blue:0.325 alpha:1.000]];
     
     //#fd7c08 (orange)
     [colors addObject:[UIColor colorWithRed:0.992 green:0.486 blue:0.031 alpha:1.000]];
@@ -87,15 +87,19 @@
     //#7b7b81 (darker gray)
     [colors addObject:[UIColor colorWithRed:0.482 green:0.482 blue:0.506 alpha:1.000]];
     
+    
     //#fec809 (darker yellow)
     [colors addObject:[UIColor colorWithRed:0.996 green:0.784 blue:0.035 alpha:1.000]];
+    
+    //#fc1c1c (red)
+    [colors addObject:[UIColor colorWithRed:0.988 green:0.110 blue:0.110 alpha:1.000]];
     
     //green
     [colors addObject: [UIColor colorWithRed:25/255.0f green:188/255.0f blue:63/255.0f alpha:1.0]];
     
     //brown
     [colors addObject:[UIColor colorWithRed:94/255.0f green:38/255.0f blue:5/255.0f alpha:1.0]];
-
+    
     //Orange
     [colors addObject:[UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:1]];
     
@@ -107,16 +111,16 @@
     
     //Goldenrod #FCD667
     [colors addObject:[UIColor colorWithRed:0.988 green:0.839 blue:0.404 alpha:1]];
-
+    
     //Red
     [colors addObject:[UIColor colorWithRed:229/255.0 green:66/255.0 blue:115/255.0 alpha:1]];
-
+    
     //Black
     [colors addObject:[UIColor colorWithRed:0 green:0 blue:0 alpha:1.0]];
     
     //wheat
     [colors addObject:[UIColor colorWithRed:1 green:0.725 blue:0.482 alpha:1]];
-
+    
     //#26df12 (green)
     [colors addObject:[UIColor colorWithRed:0.149 green:0.875 blue:0.071 alpha:1.000]];
     

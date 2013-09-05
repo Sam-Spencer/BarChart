@@ -13,6 +13,5 @@
 - (UIColor*)lightBlue;
 - (UIColor*)darkBlue;
 - (UIColor*)purple;
-- (NSArray*)listOfStandardColors;
 - (UIColor*)colorForIndex:(NSUInteger)index;
 @end

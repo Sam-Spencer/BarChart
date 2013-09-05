@@ -29,6 +29,8 @@
     [chart2Model addItem:@74 title:@"Science"];
     [chart2Model addItem:@91 title:@"Language"];
     [chart2Model addItem:@93 title:@"Social Studies"];
+    
+    
     [chart2Model updateChartWithPreConfiguration:^(BarChartView *barChart) {
         
         //Set the Shape of the Bars (Rounded or Squared) - Rounded is default

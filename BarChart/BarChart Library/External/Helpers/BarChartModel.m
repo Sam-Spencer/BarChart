@@ -32,7 +32,6 @@
         self.fontSize = [UIFont systemFontOfSize:11];
         self.plotVerticalLines = YES;
         self.chartColors = [[ChartColors alloc]init];
-        
     }
     return self;
     
@@ -110,7 +109,6 @@
         [self.itemColors addObject:[self.chartColors colorForIndex:self.items.count]];
     }
     
-    
     if (labelColor) {
         [self.labelColors addObject:labelColor];
     }
@@ -121,6 +119,7 @@
     [self.items addObject:value];
     [self.titles addObject:title];
     
+    /* come back to this and create an initializer for BarChartItem */
     BarChartItem *item = [[BarChartItem alloc]init];
     item.barTitle = [title copy];
     item.barValue = [value copy];

@@ -34,7 +34,7 @@
 @protocol BarViewDelegate <NSObject>
 @optional
 - (void)barChartItemTapped:(BarView *)barView;
-- (BOOL)barChartItemDisplaysPopoverOnTap;
+- (BOOL)barChartItemDisplaysPopoverOnTap:(BarView *)barView;
 
 @end
 
@@ -53,6 +53,12 @@
 @property (assign) BarDisplayStyle barViewDisplayStyle;
 @property (assign) BarShape barViewShape;
 @property (assign) BarShadow barViewShadow;
+
+
+/* Added to for enhanced delegate capability */
+@property (nonatomic,strong) NSString *barTitle;
+@property (nonatomic,assign) NSInteger indexOfItem;
+
 
 - (void)setupBarStyle:(BarDisplayStyle)displayStyle;
 - (void)setupBarShape:(BarShape)shape;

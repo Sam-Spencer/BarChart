@@ -45,36 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7M6-Mk-iS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1201" y="244"/>
-        </scene>
-        <!--Table View Controller - Bar Chart for IOS-->
-        <scene sceneID="Ybv-UV-4Si">
-            <objects>
-                <tableViewController id="y8Z-lN-eet" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hUD-Eo-6Hy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="g3p-FR-619">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g3p-FR-619" id="LZo-dt-huj">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="y8Z-lN-eet" id="FzA-UR-KLG"/>
-                            <outlet property="delegate" destination="y8Z-lN-eet" id="6A8-Tc-BPK"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Bar Chart for IOS" id="eYw-H2-eS8"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RMj-LA-bMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2074" y="1535"/>
+            <point key="canvasLocation" x="1185" y="-772"/>
         </scene>
         <!--Root Controller-->
         <scene sceneID="z74-TA-V20">
@@ -156,7 +127,7 @@ Available for use with the MIT License.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-ml-seB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1698" y="249"/>
+            <point key="canvasLocation" x="1682" y="-767"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6Ok-6g-Lxn">
@@ -170,19 +141,19 @@ Available for use with the MIT License.</string>
                     </tabBar>
                     <connections>
                         <segue destination="2RL-Hj-jNK" kind="relationship" relationship="viewControllers" id="4ec-KR-o4n"/>
+                        <segue destination="Bwl-mz-1zJ" kind="relationship" relationship="viewControllers" id="TgW-ph-IHl"/>
                         <segue destination="eEn-bb-6en" kind="relationship" relationship="viewControllers" id="Zks-zS-8hK"/>
-                        <segue destination="50g-3H-NQd" kind="relationship" relationship="viewControllers" id="Wdq-aQ-ZXX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9uC-15-bd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="238"/>
+            <point key="canvasLocation" x="481" y="-250"/>
         </scene>
-        <!--Navigation Controller - ModelExample-->
+        <!--Navigation Controller - AdvModel-->
         <scene sceneID="vED-cZ-XxT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eEn-bb-6en" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ModelExample" id="5Mq-I3-fIf"/>
+                <navigationController id="eEn-bb-6en" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="AdvModel" id="5Mq-I3-fIf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="83V-rv-fzl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -195,26 +166,60 @@ Available for use with the MIT License.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFh-I7-5Ei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152" y="961"/>
+            <point key="canvasLocation" x="1237" y="-19"/>
         </scene>
-        <!--Navigation Controller - Table Example-->
-        <scene sceneID="fs0-Ue-3sj">
+        <!--Navigation Controller - EasyModel-->
+        <scene sceneID="Dv9-O7-n6q">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="50g-3H-NQd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Table Example" id="Qp0-jX-cKS"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gyX-U9-grr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <navigationController definesPresentationContext="YES" id="Bwl-mz-1zJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="EasyModel" id="dpd-6Y-MOu"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fBm-KQ-hCd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="y8Z-lN-eet" kind="relationship" relationship="rootViewController" id="FUR-wN-G2n"/>
+                        <segue destination="Xfx-WI-d6o" kind="relationship" relationship="rootViewController" id="Duq-uF-I9b"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cFH-2w-zPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zkW-ad-FJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="1535"/>
+            <point key="canvasLocation" x="896" y="721"/>
+        </scene>
+        <!--Bar Chart Easy Model Controller-->
+        <scene sceneID="cV4-yh-U9X">
+            <objects>
+                <viewController id="Xfx-WI-d6o" customClass="BarChartEasyModelController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KD0-ZZ-RaH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="DYK-ad-C6a" customClass="BarChartView">
+                                <rect key="frame" x="10" y="64" width="300" height="189"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Ojh-bl-Dbo" customClass="BarChartView">
+                                <rect key="frame" x="20" y="289" width="170" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Sry-vT-aKu" customClass="BarChartView">
+                                <rect key="frame" x="198" y="289" width="102" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Iy7-1x-3e8"/>
+                    <connections>
+                        <outlet property="chartOnBottomLeft" destination="Ojh-bl-Dbo" id="Xse-KF-jub"/>
+                        <outlet property="chartOnBottomRight" destination="Sry-vT-aKu" id="2cb-B5-5fa"/>
+                        <outlet property="chartOnTop" destination="DYK-ad-C6a" id="Uyy-CW-FSR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EwM-gz-2eB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1243" y="729"/>
         </scene>
         <!--Bar Chart Model Example Controller - Model Example-->
         <scene sceneID="7Y7-Y4-JS6">
@@ -243,7 +248,7 @@ Available for use with the MIT License.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gyn-ap-kTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="865"/>
+            <point key="canvasLocation" x="1634" y="17"/>
         </scene>
     </scenes>
     <resources>

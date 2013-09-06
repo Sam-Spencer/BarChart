@@ -71,13 +71,14 @@
 	CGFloat fontSize;
 }
 
-@property (nonatomic, retain) IBOutlet id <BarViewDelegate> barViewDelegate;
+@property (nonatomic, strong) id <BarViewDelegate> barViewDelegate;
 
 @property (assign) BarDisplayStyle barViewDisplayStyle;
 @property (assign) BarShape barViewShape;
 @property (assign) BarShadow barViewShadow;
 @property (assign) BarAnimation barViewAnimation;
 @property (nonatomic, strong) UIColor *plotViewColor;
+@property (nonatomic, assign) CGFloat barCornerRadius;
 
 /**
  	Set the data source for the bar graph using XML data. This method will generate and display a bar graph based on the provided parameters and using any other data set with other methods.

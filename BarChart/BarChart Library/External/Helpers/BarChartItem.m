@@ -7,6 +7,7 @@
 //
 
 #import "BarChartItem.h"
+#import "BarView.h"
 
 @implementation BarChartItem
 

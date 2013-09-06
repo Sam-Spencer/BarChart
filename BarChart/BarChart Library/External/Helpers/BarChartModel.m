@@ -65,7 +65,9 @@
     self.items = nil;
     
 }
-- (void)addItem:(NSNumber *)value title:(NSString *)title showPopupTip:(BOOL)showPopupTip {
+- (void)addItem:(NSNumber *)value 
+          title:(NSString *)title 
+   showPopupTip:(BOOL)showPopupTip {
     
     [self addItem:value title:title barColor:nil labelColor:nil showPopupTip:showPopupTip onSelection:nil];
     

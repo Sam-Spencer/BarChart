@@ -25,7 +25,10 @@
 
 - (id)initWithBarChart:(BarChartView*)barChart {
     
-    if ([self init]) {
+    NSAssert(barChart != nil , @"A non nil barChart view must be provided to BarChartModel!");
+    
+    self = [super init];
+    if (self) {
         barChart.barViewDelegate = self;
         self.barChart = barChart;
         self.labelColor = [UIColor darkGrayColor];
@@ -140,9 +143,7 @@
 - (BOOL)barChartItemDisplaysPopoverOnTap:(BarView *)barView {
     
     BarChartItem *item = [self itemForIndex:barView.indexOfItem];
-    
     return item.showPopupTip;
-    
 }
 
 - (void)barChartItemTapped:(BarView *)barView {

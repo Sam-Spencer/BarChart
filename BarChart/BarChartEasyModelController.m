@@ -42,9 +42,6 @@
     NSDictionary *d4 = @{@"title": @"Tigers",@"value":@24.5};
     self.teamData = @[d1,d2,d3,d4];
     
-    NSDictionary *d5 = @{@"title": @"Yes",@"value":@24.5};
-    NSDictionary *d6 = @{@"title": @"No",@"value":@17.75};
-    self.surveyResultsData = @[d5,d6];
     
     NSDictionary *d8 = @{@"title": @"Mon",@"value":@24.5};
     NSDictionary *d9 = @{@"title": @"Tue",@"value":@29.5};

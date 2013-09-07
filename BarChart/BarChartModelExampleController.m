@@ -111,6 +111,7 @@
         [barChart  setupBarViewShadow:BarShadowHeavy];
         
         barChart.barCornerRadius = 4.0f;
+        
         //[barChart setBackgroundColor:[UIColor clearColor]];
         //Set the Initial Animation of the Bars (Rise, Float, Fade, or None) - Rise is default
         [barChart setupBarViewAnimation:BarAnimationRise];

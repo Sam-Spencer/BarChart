@@ -11,7 +11,7 @@
 
 @interface BarChartModel()<BarViewDelegate>
 @property (nonatomic,strong) ChartColors *chartColors;
-@property (nonatomic,strong) BarChartView *barChart;
+@property (nonatomic,weak)   BarChartView *barChart;
 @property (nonatomic,strong) NSMutableArray *items;
 @property (nonatomic,strong) NSMutableArray *titles;
 @property (nonatomic,strong) NSMutableArray *itemColors;

@@ -109,6 +109,8 @@
 	barViews = [[NSMutableArray alloc] initWithCapacity:0];
 	barLabels = [[NSMutableArray alloc] initWithCapacity:0];
 	chartDataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    self.barCornerRadius = 10.0f;
 }
 
 - (void)setUpChart {	
@@ -117,8 +119,18 @@
 	NSUInteger _index = 0;
 	for (NSDictionary *barInfo in chartDataArray)  {
 		bar = [[BarView alloc] initWithFrame:CGRectMake((barFullWidth - barWidth)/2 + _index*(barFullWidth),  plotView.height - roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio), barWidth, roundf([[barInfo objectForKey:@"value"] floatValue]*barHeightRatio))];
-		bar.cornerRadius = 10.0f;
+        
+        if (barViewDelegate) {
+            [bar setupBarViewDelegate:barViewDelegate];
+        }
+        
+		bar.cornerRadius = self.barCornerRadius;
 		bar.barValue = [[barInfo objectForKey:@"value"] floatValue];
+        
+        /* added additional properties to improve delegate didSelect capabilities */
+        bar.barTitle = [barInfo objectForKey:@"label"];
+        bar.indexOfItem = _index;
+        
 		bar.owner = self;
 		if (realMaxValue == [[barInfo objectForKey:@"value"] floatValue]) {
 			bar.special = true;
@@ -146,9 +158,7 @@
 		_index++;
 	}
     
-    if (barViewDelegate) {
-        [bar setupBarViewDelegate:barViewDelegate];
-    }
+
     
     if (self.barViewAnimation == BarAnimationRise) {
         [self performSelector:@selector(animateBars) withObject:NULL afterDelay:0.5];

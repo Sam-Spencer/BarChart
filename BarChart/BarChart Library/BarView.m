@@ -27,8 +27,9 @@
 
 #import "BarView.h"
 
-id delegate;
+
 @interface BarView ()
+@property (nonatomic,weak)id<BarViewDelegate> delegate;
 - (void)setUp;
 @end
 
@@ -72,7 +73,7 @@ id delegate;
 
 - (void)setupBarViewDelegate:(id)delegateClass {
     if (delegateClass != self && delegateClass != nil) {
-        delegate = delegateClass;
+        self.delegate = delegateClass;
     }
 }
 
@@ -92,8 +93,10 @@ id delegate;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([delegate respondsToSelector:@selector(barChartItemDisplaysPopoverOnTap)]) {
-        BOOL shouldShowPopover = [delegate barChartItemDisplaysPopoverOnTap];
+    if ([self.delegate respondsToSelector:@selector(barChartItemDisplaysPopoverOnTap:)]) {
+        
+        BOOL shouldShowPopover = [self.delegate barChartItemDisplaysPopoverOnTap:self];
+        
         if (shouldShowPopover == YES) {
             if (popTipView != nil)  {
                 [popTipView dismissAnimated:true];
@@ -135,8 +138,8 @@ id delegate;
         });
     }
     
-    if ([delegate respondsToSelector:@selector(barChartItemTapped:)]) {
-        [delegate barChartItemTapped:self];
+    if ([self.delegate respondsToSelector:@selector(barChartItemTapped:)]) {
+        [self.delegate barChartItemTapped:self];
     }
 }
 

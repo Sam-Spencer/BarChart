@@ -71,7 +71,7 @@
 	CGFloat fontSize;
 }
 
-@property (nonatomic, strong) id <BarViewDelegate> barViewDelegate;
+@property (nonatomic, strong) IBOutlet id <BarViewDelegate> barViewDelegate;
 
 @property (assign) BarDisplayStyle barViewDisplayStyle;
 @property (assign) BarShape barViewShape;

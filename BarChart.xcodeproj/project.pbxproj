@@ -77,10 +77,10 @@
 		A69B401517D94D2C008FF4BC /* BarChartEasyModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartEasyModelController.m; sourceTree = "<group>"; };
 		A6ED4D1317D8B70A00A1D97F /* ChartColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartColors.h; sourceTree = "<group>"; };
 		A6ED4D1417D8B70A00A1D97F /* ChartColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartColors.m; sourceTree = "<group>"; };
-		A6ED4D1617D8B85200A1D97F /* BarChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartModel.h; sourceTree = "<group>"; };
-		A6ED4D1717D8B85200A1D97F /* BarChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartModel.m; sourceTree = "<group>"; };
-		A6ED4D1917D8BB4800A1D97F /* BarChartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartItem.h; sourceTree = "<group>"; };
-		A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartItem.m; sourceTree = "<group>"; };
+		A6ED4D1617D8B85200A1D97F /* BarChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarChartModel.h; path = External/Helpers/BarChartModel.h; sourceTree = "<group>"; };
+		A6ED4D1717D8B85200A1D97F /* BarChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarChartModel.m; path = External/Helpers/BarChartModel.m; sourceTree = "<group>"; };
+		A6ED4D1917D8BB4800A1D97F /* BarChartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarChartItem.h; path = External/Helpers/BarChartItem.h; sourceTree = "<group>"; };
+		A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarChartItem.m; path = External/Helpers/BarChartItem.m; sourceTree = "<group>"; };
 		A6ED4D1E17D8C59000A1D97F /* BarChartModelExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartModelExampleController.h; sourceTree = "<group>"; };
 		A6ED4D1F17D8C59000A1D97F /* BarChartModelExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartModelExampleController.m; sourceTree = "<group>"; };
 		FA20611514EBEF4200D4F642 /* BarChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +138,10 @@
 				99A66CDF175F8C7400A17045 /* PlotChartView.h */,
 				99A66CE0175F8C7400A17045 /* PlotChartView.m */,
 				99A66CEC175FC9BA00A17045 /* BarTypes.h */,
+				A6ED4D1917D8BB4800A1D97F /* BarChartItem.h */,
+				A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */,
+				A6ED4D1617D8B85200A1D97F /* BarChartModel.h */,
+				A6ED4D1717D8B85200A1D97F /* BarChartModel.m */,
 				99A66CCF175F8C7400A17045 /* External */,
 			);
 			path = "BarChart Library";
@@ -165,10 +169,6 @@
 		99A66CD3175F8C7400A17045 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A6ED4D1917D8BB4800A1D97F /* BarChartItem.h */,
-				A6ED4D1A17D8BB4800A1D97F /* BarChartItem.m */,
-				A6ED4D1617D8B85200A1D97F /* BarChartModel.h */,
-				A6ED4D1717D8B85200A1D97F /* BarChartModel.m */,
 				A6ED4D1317D8B70A00A1D97F /* ChartColors.h */,
 				A6ED4D1417D8B70A00A1D97F /* ChartColors.m */,
 				99A66CD4175F8C7400A17045 /* UIColor+i7HexColor.h */,

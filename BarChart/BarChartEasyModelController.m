@@ -73,7 +73,7 @@
 - (void)setupChartOnBottomLeft {
     
     /* A basic bar chart with some specific configuration options set
-     using the a PreConfigurationBlock
+     using the PreConfigurationBlock
      
      Add bar items as noted in TopChart and then call updateChartWithPreConfiguration
      rather than updateChart.  updateChartWithPreConfiguration includes a block that is

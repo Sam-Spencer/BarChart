@@ -47,6 +47,8 @@
 }
 - (void)updateChart {
     
+    /* This method assumes it is setting up a new chart each time its called */
+    
     /* return if no items */
     if (self.items.count == 0) {
         return;
@@ -64,7 +66,7 @@
                             withFont:self.fontSize
              shouldPlotVerticalLines:YES];
     
-    /* reset items as flag that next update is new */
+    /* reset items as flag that next update is new configuration */
     self.items = nil;
     
 }
@@ -147,10 +149,8 @@
 }
 
 - (void)barChartItemTapped:(BarView *)barView {
-    
-    NSLog(@"model:%@",self.chartName);
 
-    NSLog(@"Item Tapped: title:%@ value:%.2f index:%d",barView.barTitle,barView.barValue,barView.indexOfItem);
+    NSLog(@"Model:%@ Item Tapped: title:%@ value:%.2f index:%d",self.chartName,barView.barTitle,barView.barValue,barView.indexOfItem);
     
     BarChartItem *item = [self itemForIndex:barView.indexOfItem];
     

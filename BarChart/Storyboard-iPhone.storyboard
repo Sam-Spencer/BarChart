@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2RL-Hj-jNK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="WME-CC-Iyc">
     <dependencies>
-        <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
     </dependencies>
     <scenes>
-        <!--Root Controller-->
+        <!--Root Controller - Item-->
         <scene sceneID="qMj-fA-7HB">
             <objects>
                 <viewController id="2RL-Hj-jNK" customClass="RootController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0MO-HR-ZgW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="tKu-rG-Dn7" customClass="BarChartView">
-                                <rect key="frame" x="5" y="50" width="310" height="511"/>
+                                <rect key="frame" x="5" y="50" width="310" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -38,14 +38,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="Mnj-1G-Veu"/>
                     <connections>
                         <outlet property="barChart" destination="tKu-rG-Dn7" id="qBi-2T-39m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7M6-Mk-iS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="163" y="457"/>
+            <point key="canvasLocation" x="1185" y="-772"/>
         </scene>
         <!--Root Controller-->
         <scene sceneID="z74-TA-V20">
@@ -71,7 +71,7 @@ Available for use with the MIT License.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="wjL-Mh-FMq">
+                            <navigationBar contentMode="scaleToFill" barStyle="black" id="wjL-Mh-FMq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -114,11 +114,7 @@ Available for use with the MIT License.</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="View Documentation">
-                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="viewDocumentation:" destination="MWG-9Y-sga" eventType="touchUpInside" id="f8i-YX-LFe"/>
@@ -131,28 +127,133 @@ Available for use with the MIT License.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-ml-seB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="457"/>
+            <point key="canvasLocation" x="1682" y="-767"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6Ok-6g-Lxn">
+            <objects>
+                <tabBarController id="WME-CC-Iyc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="EdY-fQ-Mfa">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2RL-Hj-jNK" kind="relationship" relationship="viewControllers" id="4ec-KR-o4n"/>
+                        <segue destination="Bwl-mz-1zJ" kind="relationship" relationship="viewControllers" id="TgW-ph-IHl"/>
+                        <segue destination="eEn-bb-6en" kind="relationship" relationship="viewControllers" id="Zks-zS-8hK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9uC-15-bd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="481" y="-250"/>
+        </scene>
+        <!--Navigation Controller - AdvModel-->
+        <scene sceneID="vED-cZ-XxT">
+            <objects>
+                <navigationController id="eEn-bb-6en" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="AdvModel" id="5Mq-I3-fIf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="83V-rv-fzl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="piF-We-gZB" kind="relationship" relationship="rootViewController" id="XjS-ov-zEN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VFh-I7-5Ei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1237" y="-19"/>
+        </scene>
+        <!--Navigation Controller - EasyModel-->
+        <scene sceneID="Dv9-O7-n6q">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Bwl-mz-1zJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="EasyModel" id="dpd-6Y-MOu"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fBm-KQ-hCd">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Xfx-WI-d6o" kind="relationship" relationship="rootViewController" id="Duq-uF-I9b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zkW-ad-FJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896" y="721"/>
+        </scene>
+        <!--Bar Chart Easy Model Controller-->
+        <scene sceneID="cV4-yh-U9X">
+            <objects>
+                <viewController id="Xfx-WI-d6o" customClass="BarChartEasyModelController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KD0-ZZ-RaH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="DYK-ad-C6a" customClass="BarChartView">
+                                <rect key="frame" x="10" y="64" width="300" height="189"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Ojh-bl-Dbo" customClass="BarChartView">
+                                <rect key="frame" x="20" y="289" width="170" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Sry-vT-aKu" customClass="BarChartView">
+                                <rect key="frame" x="198" y="289" width="102" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Iy7-1x-3e8"/>
+                    <connections>
+                        <outlet property="chartOnBottomLeft" destination="Ojh-bl-Dbo" id="Xse-KF-jub"/>
+                        <outlet property="chartOnBottomRight" destination="Sry-vT-aKu" id="2cb-B5-5fa"/>
+                        <outlet property="chartOnTop" destination="DYK-ad-C6a" id="Uyy-CW-FSR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EwM-gz-2eB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1243" y="729"/>
+        </scene>
+        <!--Bar Chart Model Example Controller - Model Example-->
+        <scene sceneID="7Y7-Y4-JS6">
+            <objects>
+                <viewController id="piF-We-gZB" customClass="BarChartModelExampleController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cM9-pX-ZFx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="NcX-b4-HfM" customClass="BarChartView">
+                                <rect key="frame" x="5" y="70" width="310" height="442"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="barViewDelegate" destination="piF-We-gZB" id="Mrt-ZP-ZiB"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Model Example" id="gTw-ZN-tcE"/>
+                    <navigationItem key="navigationItem" id="Qkk-b6-CVh"/>
+                    <connections>
+                        <outlet property="iboBarChart2" destination="NcX-b4-HfM" id="uXj-Hc-qce"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gyn-ap-kTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1634" y="17"/>
         </scene>
     </scenes>
     <resources>
         <image name="BarChartIcon.png" width="512" height="512"/>
     </resources>
-    <classes>
-        <class className="BarChartView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BarChartView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="barViewDelegate"/>
-            </relationships>
-        </class>
-        <class className="RootController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissController:"/>
-                <relationship kind="action" name="viewDocumentation:"/>
-                <relationship kind="outlet" name="barChart" candidateClass="BarChartView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

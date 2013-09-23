@@ -94,7 +94,7 @@
 //------------------------------------------------------//
 #pragma mark - Bar Chart Delegate
 
-- (BOOL)barChartItemDisplaysPopoverOnTap {
+- (BOOL)barChartItemDisplaysPopoverOnTap:(BarView *)barView {
     // Return YES to enable popups above bars when they're tapped. Popups will show the exact value of the bar. Return NO to disable popups. The default is YES. 
     return YES;
 }

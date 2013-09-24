@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="WME-CC-Iyc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="WME-CC-Iyc">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--Root Controller - Item-->
+        <!--Root Controller - Basic-->
         <scene sceneID="qMj-fA-7HB">
             <objects>
                 <viewController id="2RL-Hj-jNK" customClass="RootController" sceneMemberID="viewController">
@@ -14,17 +14,20 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="tKu-rG-Dn7" customClass="BarChartView">
-                                <rect key="frame" x="5" y="50" width="310" height="462"/>
+                                <rect key="frame" x="5" y="64" width="310" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="barViewDelegate" destination="2RL-Hj-jNK" id="D3N-IG-Tid"/>
                                 </connections>
                             </view>
-                            <navigationBar contentMode="scaleToFill" id="iSO-Jg-4Bz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <navigationBar contentMode="top" id="iSO-Jg-4Bz">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Bar Chart for iOS" id="Qfe-bI-Oqp">
                                         <barButtonItem key="rightBarButtonItem" title="Info" id="zBb-d9-4JS">
@@ -34,18 +37,21 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="2RL-Hj-jNK" id="LJn-kc-Srn"/>
+                                </connections>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Mnj-1G-Veu"/>
+                    <tabBarItem key="tabBarItem" title="Basic" id="Mnj-1G-Veu"/>
                     <connections>
                         <outlet property="barChart" destination="tKu-rG-Dn7" id="qBi-2T-39m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7M6-Mk-iS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1185" y="-772"/>
+            <point key="canvasLocation" x="1030" y="-912"/>
         </scene>
         <!--Root Controller-->
         <scene sceneID="z74-TA-V20">
@@ -62,7 +68,7 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NmX-nv-9YK">
                                         <rect key="frame" x="20" y="510" width="280" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                        <string key="text">Version 4.2 Build 354 
+                                        <string key="text">Version 4.3 Build 406 
 Available for use with the MIT License.</string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +78,7 @@ Available for use with the MIT License.</string>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <navigationBar contentMode="scaleToFill" barStyle="black" id="wjL-Mh-FMq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Info" id="1Av-3s-Ulu">
@@ -83,34 +89,37 @@ Available for use with the MIT License.</string>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="MWG-9Y-sga" id="yWh-6c-Gbz"/>
+                                </connections>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="BarChartIcon.png" id="dIq-6n-bFA">
-                                <rect key="frame" x="75" y="65" width="170" height="170"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AppIcon60x60@2x" id="dIq-6n-bFA">
+                                <rect key="frame" x="75" y="78" width="170" height="170"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bar Chart for iOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nib-De-eh6">
-                                <rect key="frame" x="57" y="263" width="206" height="21"/>
+                                <rect key="frame" x="57" y="271" width="206" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="www.github.com/iRareMedia/BarChart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iTz-d1-gxL">
-                                <rect key="frame" x="20" y="320" width="280" height="21"/>
+                                <rect key="frame" x="20" y="325" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Created by Kirill Mezrin. Updated by iRare Media" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SDz-mp-qI5">
-                                <rect key="frame" x="20" y="297" width="280" height="28"/>
+                                <rect key="frame" x="20" y="305" width="280" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wVd-MX-1Qs">
-                                <rect key="frame" x="20" y="367" width="280" height="44"/>
+                                <rect key="frame" x="20" y="375" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="View Documentation">
@@ -123,11 +132,11 @@ Available for use with the MIT License.</string>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkx-ml-seB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1682" y="-767"/>
+            <point key="canvasLocation" x="1650" y="-912"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6Ok-6g-Lxn">
@@ -149,11 +158,11 @@ Available for use with the MIT License.</string>
             </objects>
             <point key="canvasLocation" x="481" y="-250"/>
         </scene>
-        <!--Navigation Controller - AdvModel-->
+        <!--Navigation Controller - Advanced-->
         <scene sceneID="vED-cZ-XxT">
             <objects>
                 <navigationController id="eEn-bb-6en" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="AdvModel" id="5Mq-I3-fIf"/>
+                    <tabBarItem key="tabBarItem" title="Advanced" id="5Mq-I3-fIf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="83V-rv-fzl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -166,13 +175,13 @@ Available for use with the MIT License.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFh-I7-5Ei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1237" y="-19"/>
+            <point key="canvasLocation" x="1030" y="488"/>
         </scene>
-        <!--Navigation Controller - EasyModel-->
+        <!--Navigation Controller - Multiple-->
         <scene sceneID="Dv9-O7-n6q">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Bwl-mz-1zJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="EasyModel" id="dpd-6Y-MOu"/>
+                    <tabBarItem key="tabBarItem" title="Multiple" id="dpd-6Y-MOu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fBm-KQ-hCd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -182,9 +191,9 @@ Available for use with the MIT License.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkW-ad-FJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="721"/>
+            <point key="canvasLocation" x="1030" y="-250"/>
         </scene>
-        <!--Bar Chart Easy Model Controller-->
+        <!--Bar Chart Easy Model Controller - Easy Model-->
         <scene sceneID="cV4-yh-U9X">
             <objects>
                 <viewController id="Xfx-WI-d6o" customClass="BarChartEasyModelController" sceneMemberID="viewController">
@@ -193,24 +202,24 @@ Available for use with the MIT License.</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="DYK-ad-C6a" customClass="BarChartView">
-                                <rect key="frame" x="10" y="64" width="300" height="189"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <rect key="frame" x="10" y="67" width="300" height="189"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="Ojh-bl-Dbo" customClass="BarChartView">
-                                <rect key="frame" x="20" y="289" width="170" height="194"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="10" y="264" width="170" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="Sry-vT-aKu" customClass="BarChartView">
-                                <rect key="frame" x="198" y="289" width="102" height="194"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="188" y="264" width="122" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Iy7-1x-3e8"/>
+                    <navigationItem key="navigationItem" title="Easy Model" id="Iy7-1x-3e8"/>
                     <connections>
                         <outlet property="chartOnBottomLeft" destination="Ojh-bl-Dbo" id="Xse-KF-jub"/>
                         <outlet property="chartOnBottomRight" destination="Sry-vT-aKu" id="2cb-B5-5fa"/>
@@ -219,9 +228,9 @@ Available for use with the MIT License.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EwM-gz-2eB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1243" y="729"/>
+            <point key="canvasLocation" x="1650" y="-250"/>
         </scene>
-        <!--Bar Chart Model Example Controller - Model Example-->
+        <!--Bar Chart Model Example Controller - Advanced Model-->
         <scene sceneID="7Y7-Y4-JS6">
             <objects>
                 <viewController id="piF-We-gZB" customClass="BarChartModelExampleController" sceneMemberID="viewController">
@@ -230,7 +239,7 @@ Available for use with the MIT License.</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="NcX-b4-HfM" customClass="BarChartView">
-                                <rect key="frame" x="5" y="70" width="310" height="442"/>
+                                <rect key="frame" x="5" y="66" width="310" height="453"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -241,18 +250,18 @@ Available for use with the MIT License.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Model Example" id="gTw-ZN-tcE"/>
-                    <navigationItem key="navigationItem" id="Qkk-b6-CVh"/>
+                    <navigationItem key="navigationItem" title="Advanced Model" id="Qkk-b6-CVh"/>
                     <connections>
                         <outlet property="iboBarChart2" destination="NcX-b4-HfM" id="uXj-Hc-qce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gyn-ap-kTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="17"/>
+            <point key="canvasLocation" x="1650" y="488"/>
         </scene>
     </scenes>
     <resources>
-        <image name="BarChartIcon.png" width="512" height="512"/>
+        <image name="AppIcon60x60@2x" width="512" height="512"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

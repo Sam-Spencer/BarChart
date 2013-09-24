@@ -24,8 +24,7 @@
 
 @implementation BarChartEasyModelController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     [self setupDataSources];
@@ -34,8 +33,8 @@
     [self setupChartOnBottomRight];
   
 }
+
 - (void)setupDataSources {
-    
     NSDictionary *d1 = @{@"title": @"Wings",@"value":@24.5};
     NSDictionary *d2 = @{@"title": @"Lions",@"value":@33.0};
     NSDictionary *d3 = @{@"title": @"Pistons",@"value":@21.5};
@@ -49,17 +48,14 @@
     NSDictionary *d11 = @{@"title": @"Thu",@"value":@19.5};
     NSDictionary *d12 = @{@"title": @"Fri",@"value":@34.5};
     self.weekDayData = @[d8,d9,d10,d11,d12];
-    
-    
 }
+
 - (void)setupChartOnTop {
-    
      /* A basic bar chart in about 4 lines of code.
      
        Simply iterate through your datasource and add items as needed.  
        BarChartModel will automatically assign a bar color to each item and use
        standard default settings.
-     
      */
     
     BarChartModel *model1 = [[BarChartModel alloc]initWithBarChart:self.chartOnTop];
@@ -70,8 +66,8 @@
     
     [model1 updateChart];
 }
+
 - (void)setupChartOnBottomLeft {
-    
     /* A basic bar chart with some specific configuration options set
      using the PreConfigurationBlock
      
@@ -99,8 +95,8 @@
     }];
     
 }
+
 - (void)setupChartOnBottomRight {
-    
     /* A basic bar chart with some specific configuration options set
        using the a PreConfigurationBlock
      
@@ -123,8 +119,6 @@
         [barChart setupBarViewStyle:BarStyleFair];
         [barChart setupBarViewAnimation:BarAnimationFloat];
     }];
-    
-    
 }
 
 

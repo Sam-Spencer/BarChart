@@ -128,23 +128,32 @@ The second delegate method, `barChartItemTapped:`, is called when the user taps 
     }
     
 ##Compatibility Requirements
-Before using Bar Chart, make sure your project meets its requirements.  
- - Bar Chart works on iOS 4.2 and higher, however the sample project only runs on iOS 5.0 and higher.  
+Before using Bar Chart, make sure your project meets its requirements. 
+
+###BarChart Requirements
+ - Supported build target - iOS 6.1 (Xcode 4.6, Apple LLVM compiler 4.2)
+ - Earliest supported deployment target - iOS 5.0
+ - Earliest compatible deployment target - iOS 4.2
  - Bar Chart now uses Objective-C ARC. If your project does not use ARC, add the ARC flag to the **Bar Chart** files in your project's Compile Sources section: `-fobjc-arc`  
- - You must add the `CoreGraphics` and `QuartzCore` frameworks to your project   
+ - You must add the `CoreGraphics` and `QuartzCore` frameworks to your project  
+ 
+NOTE: **Supported** means that the library has been tested with this version. **Compatible** means that the library should work on this OS version (it doesn't rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.
+
+###Demo App Requirements
+ - The Bar Chart Demo App works on iOS 5.0 and higher  
+ - The Bar Chart Demo App requires Xcode 5.0 or greater
 
 ##To-Do
-Bar Chart is a work in progress. We're planning to add these features soon:    
-- [x] Re-add animations to Bar Chart  
-- [x] Add ways to customize Bar Chart  
-- [x] Add Y Axis Scale   
-- [ ] Add styling options to popup tips    
-- [ ] Add more animations, custom animations    
-- [ ] Add ability to plot negative values to Bar Chart  
+Bar Chart is a work in progress. Please check the milestones / issues section of the Repo page for more details. Submit an issue if you'd like to see something added or fixed.
 
 ##Changelog
 
 <table>
+<tr><th colspan="2" style="text-align:center;"><b>Version 4.3</b></th></tr>
+  <tr>
+    <td>This version makes improvements towards the 5.0 milestone. Issue #2 has been resolved, among many other issues. Full details and documentation will be available soon. Please check Pull Request #7 for more. Thank you to Everett Michaud for his contributions in [Pull Request #7](https://github.com/iRareMedia/BarChart/pull/7).
+  </td>
+  </tr>
 <tr><th colspan="2" style="text-align:center;"><b>Version 4.2</b></th></tr>
   <tr>
     <td>This version makes improvements towards the 5.0 milestone. Issue #3 and Issue #6 have been fixed in this version. When filling a BarChart with data from an NSArray, you can now use either UIColor or HEX strings (you can't use both though). A new <tt>Fair</tt> bar style is available for styling the bars on your Bar Chart (Gloss is still default). The Matte and Fair bar styles have also been updated to provide a more subtle, lighter gradient. The Flat bar style animation code has also been improved. A new delegate system is now available with two delegate methods and a delegate property which can be set directly in Xcode's Storyboards / Interface Builder. Refer to the documentation on delegates.

@@ -28,6 +28,10 @@
 	[super viewDidUnload];
 }
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
+
 //------------------------------------------------------//
 //--- Bar Chart Setup ----------------------------------//
 //------------------------------------------------------//
@@ -50,6 +54,7 @@
     
     // Set the Shape of the Bars (Rounded or Squared) - Rounded is default
     [barChart setupBarViewShape:BarShapeRounded];
+    [barChart setBarCornerRadius:4.0f];
     
     // Set the Style of the Bars (Glossy, Matte, Fair, or Flat) - Glossy is default
     [barChart setupBarViewStyle:BarStyleGlossy];

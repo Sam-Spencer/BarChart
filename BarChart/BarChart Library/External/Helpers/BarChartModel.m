@@ -23,8 +23,7 @@
 
 @implementation BarChartModel
 
-- (id)initWithBarChart:(BarChartView*)barChart {
-    
+- (id)initWithBarChart:(BarChartView *)barChart {
     NSAssert(barChart != nil , @"A non nil barChart view must be provided to BarChartModel!");
     
     self = [super init];
@@ -34,19 +33,17 @@
         self.labelColor = [UIColor darkGrayColor];
         self.fontSize = [UIFont systemFontOfSize:11];
         self.plotVerticalLines = YES;
-        self.chartColors = [[ChartColors alloc]init];
+        self.chartColors = [[ChartColors alloc] init];
     }
     return self;
-    
 }
+
 - (void)updateChartWithPreConfiguration:(void (^)(BarChartView *))preconfigurationBlock {
-    
     preconfigurationBlock(self.barChart);
     [self updateChart];
-    
 }
+
 - (void)updateChart {
-    
     /* This method assumes it is setting up a new chart each time its called */
     
     /* return if no items */
@@ -70,34 +67,21 @@
     self.items = nil;
     
 }
-- (void)addItem:(NSNumber *)value 
-          title:(NSString *)title 
-   showPopupTip:(BOOL)showPopupTip {
-    
+
+- (void)addItem:(NSNumber *)value title:(NSString *)title showPopupTip:(BOOL)showPopupTip {
     [self addItem:value title:title barColor:nil labelColor:nil showPopupTip:showPopupTip onSelection:nil];
-    
 }
-- (void)addItem:(NSNumber *)value 
-          title:(NSString *)title 
-   showPopupTip:(BOOL)showPopupTip
-    onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock {
-    
+
+- (void)addItem:(NSNumber *)value title:(NSString *)title showPopupTip:(BOOL)showPopupTip onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock {
     [self addItem:value title:title barColor:nil labelColor:nil showPopupTip:showPopupTip onSelection:didSelectBlock];
-    
 }
-- (void)addItem:(NSNumber *)value
-          title:(NSString *)title
-       barColor:(UIColor *)barColor
-     labelColor:(UIColor *)labelColor 
-   showPopupTip:(BOOL)showPopupTip
-    onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock
-{
+
+- (void)addItem:(NSNumber *)value title:(NSString *)title  barColor:(UIColor *)barColor labelColor:(UIColor *)labelColor showPopupTip:(BOOL)showPopupTip onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock {
     
     NSAssert([value isKindOfClass:[NSNumber class]] , @"A number value must be provided when adding a new item to chart!");
     
     /* if list is nil then create data structures */
-    if (self.items.count == 0 || !self.items)
-    {
+    if (self.items.count == 0 || !self.items) {
         self.items = [NSMutableArray new];
         self.titles = [NSMutableArray new];
         self.itemColors = [NSMutableArray new];
@@ -111,15 +95,13 @@
     
     if (barColor) {
         [self.itemColors addObject:barColor];
-    }
-    else {
+    } else {
         [self.itemColors addObject:[self.chartColors colorForIndex:self.items.count]];
     }
     
     if (labelColor) {
         [self.labelColors addObject:labelColor];
-    }
-    else {
+    } else {
         [self.labelColors addObject:self.labelColor];
     }
     
@@ -136,6 +118,7 @@
     [self.tempListOfItems addObject:item];
     
 }
+
 - (BarChartItem*)itemForIndex:(NSInteger)index {
     
     BarChartItem *item = [self.listOfBarItems objectAtIndex:index];

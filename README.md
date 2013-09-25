@@ -13,6 +13,25 @@ Follow these steps to add Bar Chart to your iOS App project in Xcode. Check the 
  5. Connect the Bar Chart View to your ViewController Class: `@property (strong, nonatomic) IBOutlet BarChartView *barChart;`
  6. Loading data into the Bar Chart can be done using an `XML file` or with an `NSArray`. Please refer to one of the sections below about loading data.
 
+##Loading Data Dynamically
+Bar Chart provides easy ways to add and change content at anytime using `BarChartModel` and `BarChartView`. In addition to filling your Bar Chart with data from an NSArray or XML file, you can  add data / items individually using `BarChartModel`. Here's how you can setup a Bar Chart Model using a current Bar Chart, then update it in the interface:
+
+    // Create the Bar Chart Model
+    BarChartModel *chartModel = [[BarChartModel alloc] initWithBarChart:self.barChartFromInterface];
+
+    // Create the Data for the Bar Chart Model
+    [chartModel addItem:@43 title:@"Yes" barColor:[UIColor blueColor] labelColor:nil showPopupTip:YES onSelection:nil];
+    [chartModel addItem:@40 title:@"No" barColor:[UIColor redColor] labelColor:nil showPopupTip:NO onSelection:^(BarView *barView, NSString *title, NSNumber *value, int index) {
+        NSLog(@"BarView (%@) selected. Title: %@, Value: %@, Index: %i", barView, title, value, index);
+    }];
+
+    // Update the chart with the specified configuration settings
+    [chartModel updateChartWithPreConfiguration:^(BarChartView *barChart) {
+        [barChart setupBarViewShape:BarShapeSquared];
+        [barChart setupBarViewStyle:BarStyleFair];
+        [barChart setupBarViewAnimation:BarAnimationFloat];
+    }];
+
 ##Loading Data with NSArray
 Filling your Bar Chart with data from an NSArray is the easiest and most flexible way to setup and load data into a `BarChartView`. Bar Chart provides a simple method that properly formats and generates an `NSArray` for use with a Bar Chart. Here's how you can easily generate data for a Bar Chart:
 
@@ -151,7 +170,7 @@ Bar Chart is a work in progress. Please check the milestones / issues section of
 <table>
 <tr><th colspan="2" style="text-align:center;"><b>Version 4.3</b></th></tr>
   <tr>
-    <td>This version makes improvements towards the 5.0 milestone. Issue #2 has been resolved, among many other issues. Full details and documentation will be available soon. Please check Pull Request #7 for more. Thank you to Everett Michaud for his contributions in [Pull Request #7](https://github.com/iRareMedia/BarChart/pull/7).
+    <td>This version makes improvements towards the 5.0 milestone. Issue #2 has been resolved, among many other issues. Please check Pull Request #7 for more. Thank you to Everett Michaud for his contributions in <a href="https://github.com/iRareMedia/BarChart/pull/7">Pull Request #7</a>. This version adds Dynamic Chart Creation. Check the new documentation and examples for more details.
   </td>
   </tr>
 <tr><th colspan="2" style="text-align:center;"><b>Version 4.2</b></th></tr>

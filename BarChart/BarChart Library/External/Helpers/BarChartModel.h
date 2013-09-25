@@ -15,6 +15,7 @@
 @property (nonatomic,strong) UIFont *fontSize;
 @property (nonatomic,assign) BOOL plotVerticalLines;
 
+
 - (id)initWithBarChart:(BarChartView*)barChart;
 
 
@@ -25,9 +26,7 @@
  @param title The title of the bar
  @param showPopupTip Should the bar respond to taps?
  */
-- (void)addItem:(NSNumber *)value
-          title:(NSString *)title 
-   showPopupTip:(BOOL)showPopupTip;
+- (void)addItem:(NSNumber *)value title:(NSString *)title showPopupTip:(BOOL)showPopupTip;
 
 
 /**
@@ -38,11 +37,7 @@
  @param showPopupTip Should the bar respond to taps?
  @param onSelection Use selection block to take a specific action after the bar is tapped
  */
-
-- (void)addItem:(NSNumber *)value
-          title:(NSString *)title
-   showPopupTip:(BOOL)showPopupTip
-    onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock;
+- (void)addItem:(NSNumber *)value title:(NSString *)title showPopupTip:(BOOL)showPopupTip onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock;
 
 
 
@@ -56,13 +51,7 @@
  @param showPopupTip Should the bar respond to taps?
  @param onSelection Use selection block to take a specific action after the bar is tapped
  */
-
-- (void)addItem:(NSNumber *)value
-          title:(NSString *)title
-       barColor:(UIColor *)barColor
-     labelColor:(UIColor *)labelColor
-   showPopupTip:(BOOL)showPopupTip
-    onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock;
+- (void)addItem:(NSNumber *)value title:(NSString *)title barColor:(UIColor *)barColor labelColor:(UIColor *)labelColor showPopupTip:(BOOL)showPopupTip onSelection:(void (^)(BarView *barView,NSString *title,NSNumber *value,int index))didSelectBlock;
 
 
 /**
@@ -84,6 +73,6 @@
 /**
  Method to call on the model to retrieve the specific BarChartItem when a selection is made.
  */
-
 - (BarChartItem*)itemForIndex:(NSInteger)index;
+
 @end

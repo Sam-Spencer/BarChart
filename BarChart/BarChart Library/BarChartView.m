@@ -190,7 +190,7 @@
     
 	plotChart.stepWidthAxisY = showAxisY?self.width/STROKE_AXIS_Y_SCALE:0.0f;
 	plotView.frame = CGRectMake(leftPadding, PLOT_PADDING_TOP, plotChart.width - leftPadding, plotChart.height - PLOT_PADDING_TOP - PLOT_PADDING_BOTTOM);
-	barHeightRatio = plotView.height/maxValue;
+    barHeightRatio =  maxValue ? plotView.height/maxValue : 0;
 	barWidth = plotView.width/chartDataArray.count;
 	barFullWidth = plotView.width/chartDataArray.count;
 	
